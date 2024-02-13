@@ -1,0 +1,35 @@
+body
+{
+	scrollbar-gutter: stable;
+}
+
+::-webkit-scrollbar
+{
+	background: transparent;
+	width: 8px;
+	border-radius: 100vh;
+}
+
+:is(:not(body)):hover::-webkit-scrollbar-thumb
+{
+	background: var(--orange-25);
+	border-radius: 100vh;
+}
+
+:is(:not(body)):hover::-webkit-scrollbar-thumb:hover
+{
+	background: var(--orange-50);
+	border-radius: 100vh;
+}
+
+body:hover::-webkit-scrollbar-thumb
+{
+	background: var(--orange-25);
+	border-radius: 100vh;
+}
+
+body:hover::-webkit-scrollbar-thumb:hover
+{
+	background: var(--orange-50);
+	border-radius: 100vh;
+}
