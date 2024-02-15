@@ -2,7 +2,7 @@
 {
 	line-height: 1.5;
 	color-scheme: light dark;
-	color: rgba(255, 255, 255, 0.87);
+	color: hsl(0, 0%, 90%);
 
 	font-synthesis: none;
 	-webkit-font-smoothing: antialiased;
@@ -11,6 +11,39 @@
 	/* Variable */
 	--body-color: hsl(0, 0%, 16%);
 	--text-color: hsl(0, 0%, 90%);
+	--fancy-font: "Lostar";
+	--accent-light-green: #75e494;
+	--accent-main-purple: hsl(263, 100%, 75%);
+	--accent-green: #00ff47;
+	--accent-cyan: #32ffe6;
+	--accent-blue: #3461d3;
+	--accent-white: #d1d1d1;
+	--linear-gradient: linear-gradient(to top right,
+			var(--accent-main-purple)15%,
+			var(--accent-blue)35%,
+			var(--accent-cyan)45%,
+			var(--accent-light-green)50%,
+			var(--accent-cyan)55%,
+			var(--accent-blue)65%,
+			var(--accent-main-purple)85%);
+	--radial-gradient: radial-gradient(circle at center,
+			var(--accent-main-purple),
+			var(--accent-blue),
+			var(--accent-cyan),
+			var(--accent-light-green),
+			var(--accent-green),
+			var(--accent-light-green),
+			var(--accent-cyan),
+			var(--accent-blue),
+			var(--accent-main-purple)
+			);
+	--radial-gradient-blue: radial-gradient(circle at center,
+			var(--accent-main-purple),
+			var(--accent-blue),
+			var(--accent-cyan),
+			var(--accent-blue),
+			var(--accent-main-purple)
+			);
 }
 
 body

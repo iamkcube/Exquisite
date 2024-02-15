@@ -3,7 +3,8 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginPage from "@components/LoginPage";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-	
+import { AuthProvider } from "@/contexts/AuthContext";
+
 const theme = createTheme({
 	palette: {
 		mode: "dark",
@@ -31,21 +32,23 @@ const theme = createTheme({
 
 function App() {
 	return (
-		<ThemeProvider theme={theme}>
-			<CssBaseline />
-			<BrowserRouter>
-				<Routes>
-					<Route
-						path="/login"
-						element={<LoginPage />}
-					/>
-					<Route
-						path="/"
-						element={<LandingPage />}
-					/>
-				</Routes>
-			</BrowserRouter>
-		</ThemeProvider>
+		<AuthProvider>
+			<ThemeProvider theme={theme}>
+				{/* <CssBaseline /> */}
+				<BrowserRouter>
+					<Routes>
+						<Route
+							path="/login"
+							element={<LoginPage />}
+						/>
+						<Route
+							path="/"
+							element={<LandingPage />}
+						/>
+					</Routes>
+				</BrowserRouter>
+			</ThemeProvider>
+		</AuthProvider>
 	);
 }
 

@@ -9,6 +9,7 @@ export default defineConfig({
 		alias: {
 			"@landingpage": resolve(__dirname, "./src/components/LandingPage/"),
 			"@utils": resolve(__dirname, "./src/components/utils/"),
+			"@api": resolve(__dirname, "./src/api/"),
 			"@components": resolve(__dirname, "./src/components/"),
 			"@": resolve(__dirname, "./src"),
 		},

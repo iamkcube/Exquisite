@@ -11,6 +11,9 @@ dependencies:
   '@emotion/styled':
     specifier: ^11.11.0
     version: 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.55)(react@18.2.0)
+  '@mui/lab':
+    specifier: 5.0.0-alpha.165
+    version: 5.0.0-alpha.165(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.10)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
   '@mui/material':
     specifier: ^5.15.10
     version: 5.15.10(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
@@ -20,6 +23,9 @@ dependencies:
   '@tanstack/react-query':
     specifier: ^5.20.5
     version: 5.20.5(react@18.2.0)
+  '@tanstack/react-query-devtools':
+    specifier: ^5.20.5
+    version: 5.20.5(@tanstack/react-query@5.20.5)(react@18.2.0)
   axios:
     specifier: ^1.6.7
     version: 1.6.7
@@ -80,7 +86,7 @@ devDependencies:
     specifier: ^0.4.5
     version: 0.4.5(eslint@8.56.0)
   typescript:
-    specifier: ^5.2.2
+    specifier: ^5.3.3
     version: 5.3.3
   vite:
     specifier: ^5.1.0
@@ -1045,6 +1051,39 @@ packages:
     resolution: {integrity: sha512-qPv7B+LeMatYuzRjB3hlZUHqinHx/fX4YFBiaS19oC02A1e9JFuDKDvlyRQQ5oRSbJJt0QlaLTlr0IcauVcJRQ==}
     dev: false
 
+  /@mui/lab@5.0.0-alpha.165(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.10)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-8/zJStT10nh9yrAzLOPTICGhpf5YiGp/JpM0bdTP7u5AE+YT+X2u6QwMxuCrVeW8/WVLAPFg0vtzyfgPcN5T7g==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@emotion/react': ^11.5.0
+      '@emotion/styled': ^11.3.0
+      '@mui/material': '>=5.15.0'
+      '@types/react': ^17.0.0 || ^18.0.0
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@emotion/react':
+        optional: true
+      '@emotion/styled':
+        optional: true
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.23.9
+      '@emotion/react': 11.11.3(@types/react@18.2.55)(react@18.2.0)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.55)(react@18.2.0)
+      '@mui/base': 5.0.0-beta.36(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/material': 5.15.10(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/system': 5.15.9(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@types/react@18.2.55)(react@18.2.0)
+      '@mui/types': 7.2.13(@types/react@18.2.55)
+      '@mui/utils': 5.15.9(@types/react@18.2.55)(react@18.2.0)
+      '@types/react': 18.2.55
+      clsx: 2.1.0
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /@mui/material-next@6.0.0-alpha.123(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-TO6296nAEaqfsfSFCnihtvYRo27WunbRwfgzssKOREtxuaSVXEIbZ3pEVdM4JnqOyvuHPZxkA5yyTjhLgJDdPw==}
     engines: {node: '>=12.0.0'}
@@ -1528,6 +1567,21 @@ packages:
 
   /@tanstack/query-core@5.20.5:
     resolution: {integrity: sha512-T1W28gGgWn0A++tH3lxj3ZuUVZZorsiKcv+R50RwmPYz62YoDEkG4/aXHZELGkRp4DfrW07dyq2K5dvJ4Wl1aA==}
+    dev: false
+
+  /@tanstack/query-devtools@5.20.2:
+    resolution: {integrity: sha512-BZfSjhk/NGPbqte5E3Vc1Zbj28uWt///4I0DgzAdWrOtMVvdl0WlUXK23K2daLsbcyfoDR4jRI4f2Z5z/mMzuw==}
+    dev: false
+
+  /@tanstack/react-query-devtools@5.20.5(@tanstack/react-query@5.20.5)(react@18.2.0):
+    resolution: {integrity: sha512-Wl7IzNuKCb4h41a5iH/YXNwalHItqJPCAr4r8+0iUYOLHNOf3E9P0G4kzZ9sqDoWKxY04qst6Vrij9bwPzLQRQ==}
+    peerDependencies:
+      '@tanstack/react-query': ^5.20.5
+      react: ^18.0.0
+    dependencies:
+      '@tanstack/query-devtools': 5.20.2
+      '@tanstack/react-query': 5.20.5(react@18.2.0)
+      react: 18.2.0
     dev: false
 
   /@tanstack/react-query@5.20.5(react@18.2.0):

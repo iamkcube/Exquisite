@@ -1,3 +1,4 @@
+import MainContent from "@landingpage/MainContent";
 import Navbar from "@landingpage/Navbar";
 import { Box } from "@mui/material";
 
@@ -10,6 +11,7 @@ export default function LandingPage() {
 			}}
 		>
 			<Navbar />
+			<MainContent />
 		</Box>
 	);
 }

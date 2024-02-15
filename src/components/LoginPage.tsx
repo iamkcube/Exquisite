@@ -1,59 +1,233 @@
-import { Box, TextField } from "@mui/material";
+import { base64 } from "@/assets/StarburstFloralBase64";
+import { useAuth } from "@/contexts/AuthContext";
+import {
+	handleLogin,
+	handleSignOut,
+	handleSignUp,
+	handleSignUpWithGoogle,
+} from "@api/authAPI";
+import { Box, Stack, TextField, Typography, keyframes } from "@mui/material";
+import { useMutation } from "@tanstack/react-query";
 import RoundedButton from "@utils/RoundedButton";
+import Starburst from "@utils/Starburst";
 import { useRef } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/config/firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
+	const navigate = useNavigate();
+	const { userLoggedIn } = useAuth();
+
 	const emailRef = useRef<HTMLInputElement>();
 	const passwordRef = useRef<HTMLInputElement>();
 
-	async function handleSignUp() {
-		console.log("🚀 ~ handleSignUp ~ email:", emailRef?.current?.value);
-		console.log(
-			"🚀 ~ handleSignUp ~ password:",
-			passwordRef?.current?.value
-		);
-		const email = emailRef?.current?.value || "";
-		const password = passwordRef?.current?.value || "";
-		
-		await createUserWithEmailAndPassword(auth, email, password);
-		console.log("Signup successful");
-		
-	}
+	const { mutate: mutateLogin, isPending: isLoadingLogin } = useMutation({
+		mutationFn: () =>
+			handleLogin(
+				emailRef?.current?.value || "",
+				passwordRef?.current?.value || ""
+			),
+		onSuccess: () => navigate("../"),
+	});
+
+	const { mutate: mutateSignUp, isPending: isLoadingSignUp } = useMutation({
+		mutationFn: () =>
+			handleSignUp(
+				emailRef?.current?.value || "",
+				passwordRef?.current?.value || ""
+			),
+		onSuccess: () => navigate("../"),
+		onError(error) {
+			if (
+				error.message === "Firebase: Error (auth/email-already-in-use)."
+			) {
+				mutateLogin();
+			}
+		},
+	});
+
+	const {
+		mutate: mutateSignUpWithGoogle,
+		isPending: isLoadingSignUpWithGoogle,
+	} = useMutation({
+		mutationFn: () => handleSignUpWithGoogle(),
+		onSuccess: () => navigate("../"),
+	});
+
+	const { mutate: mutateSignOut, isPending: isLoadingSignOut } = useMutation({
+		mutationFn: () => handleSignOut(),
+	});
 
 	return (
 		<Box
 			sx={{
-				width: "min(100% - 3rem, 960px)",
-				marginInline: "auto",
 				display: "grid",
 				placeContent: "center",
-				gap: "1rem",
 				minHeight: "100svh",
 			}}
 		>
-			<TextField
-				id="email"
-				variant="filled"
-				label="Enter Email"
-				inputRef={emailRef}
-			/>
-			<TextField
-				id="password"
-				type="password"
-				variant="filled"
-				label="Enter Password"
-				inputRef={passwordRef}
-			/>
-			<RoundedButton
-				text="Sign Up"
-				onClick={handleSignUp}
-			/>
-			<RoundedButton
-				text="Sign Up with Google"
-				onClick={() => null}
-			/>
+			<Box marginBlockEnd="1%">
+				<RoundedButton
+					text="Back to Home"
+					onClick={() => navigate("../")}
+				/>
+			</Box>
+			<Box
+				sx={{
+					display: "grid",
+					alignItems: "center",
+					gridTemplateRows: "1fr 10% 1fr",
+					gridTemplateAreas: `"top"
+										"gap"
+										"bottom"`,
+				}}
+			>
+				<Box
+					sx={{
+						width: "80vw",
+						height: "min(30vh,250px)",
+						backgroundColor: "var(--accent-white)",
+						opacity: 0.25,
+						zIndex: -2,
+						gridArea: "top",
+					}}
+				></Box>
+				<Box
+					sx={{
+						width: "80vw",
+						height: "min(30vh,250px)",
+						backgroundColor: "var(--accent-blue)",
+						opacity: 0.25,
+						zIndex: -2,
+						gridArea: "bottom",
+					}}
+				></Box>
+				<Box
+					sx={{
+						marginInline: "auto",
+						width: "40rem",
+						mask: `url(${base64}) no-repeat center / contain`,
+						WebkitMask: `url(${base64}) no-repeat center / contain`,
+						gridArea:
+							"top-start/ top-start / bottom-end / bottom-end",
+						zIndex: -1,
+					}}
+				>
+					<Box
+						className="gradient-hover"
+						sx={{
+							width: "100%",
+							aspectRatio: 1,
+							background: "var(--radial-gradient-blue)",
+							backgroundSize: "400%",
+							backgroundPosition: "0% 0%",
+							backgroundRepeat:"repeat",
+							animation: `${backgroundMove} 50s linear infinite`,
+						}}
+					></Box>
+				</Box>
+				<Box
+					sx={{
+						marginInline: "auto",
+						width: "40ch",
+						display: "grid",
+						placeItems: "center",
+						gap: "1rem",
+						gridArea:
+							"top-start/ top-start / bottom-end / bottom-end",
+					}}
+				>
+					<Stack
+						direction="row"
+						width="100%"
+						alignItems="center"
+						marginBlockEnd="0.5em"
+						spacing={1}
+					>
+						<Typography
+							fontFamily="var(--fancy-font)"
+							fontSize="2rem"
+							paddingInlineEnd={1}
+						>
+							Login/SignUp
+						</Typography>
+						<Starburst
+							color="var(--accent-light-green)"
+							width="2rem"
+						/>
+						<Starburst
+							color="var(--accent-light-green)"
+							width="2rem"
+						/>
+						<Starburst
+							color="var(--accent-light-green)"
+							width="2rem"
+						/>
+					</Stack>
+					<TextField
+						id="email"
+						variant="outlined"
+						label="Enter Email"
+						inputRef={emailRef}
+						fullWidth
+						InputProps={{
+							style: {
+								borderRadius: "100px",
+							},
+						}}
+					/>
+					<TextField
+						id="password"
+						type="password"
+						variant="outlined"
+						label="Enter Password"
+						inputRef={passwordRef}
+						fullWidth
+						InputProps={{
+							style: {
+								borderRadius: "100px",
+							},
+						}}
+					/>
+					<Stack
+						direction="column"
+						spacing={1}
+					>
+						<RoundedButton
+							text="Login/Sign Up"
+							contained
+							color="secondary"
+							onClick={mutateSignUp}
+							isLoading={isLoadingSignUp || isLoadingLogin}
+						/>
+						<RoundedButton
+							text="Sign In with Google"
+							contained
+							color="secondary"
+							onClick={mutateSignUpWithGoogle}
+							isLoading={isLoadingSignUpWithGoogle}
+						/>
+						{userLoggedIn && (
+							<RoundedButton
+								text="Sign Out"
+								contained
+								color="secondary"
+								onClick={mutateSignOut}
+								isLoading={isLoadingSignOut}
+							/>
+						)}
+					</Stack>
+				</Box>
+			</Box>
 		</Box>
 	);
 }
+
+
+const backgroundMove = keyframes`
+		from {
+			background-position:0% 0%;
+		}
+		to{
+			background-position:100% 0%;
+		}
+`
