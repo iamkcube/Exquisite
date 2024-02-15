@@ -6,7 +6,6 @@ export default function AboutUs() {
 		<Box
 			id="AboutUs"
 			sx={{
-				marginBlockStart: "4rem",
 				display: "grid",
 				gridTemplateColumns: "auto 1fr",
 				gridTemplateRows: "auto auto 1fr",
@@ -48,9 +47,9 @@ export default function AboutUs() {
 				In 2012, the annual indie-fest was a huge success, featuring a
 				lineup of rising stars, headliners unleashed, and an eclectic
 				ensemble of artists.
-				<br /> The festival showcased fresh faces in the indie music
-				scene, as well as genre-benders who pushed the boundaries of
-				traditional music genres.
+				<br /> <br /> The festival showcased fresh faces in the indie
+				music scene, as well as genre-benders who pushed the boundaries
+				of traditional music genres.
 			</Typography>
 		</Box>
 	);

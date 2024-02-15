@@ -20,7 +20,6 @@ export default function MainContent() {
 					<Box
 						sx={{
 							display: "grid",
-							gridTemplateRows: "1fr",
 							gridTemplateAreas: `"center"`,
 							placeItems: "center",
 						}}
