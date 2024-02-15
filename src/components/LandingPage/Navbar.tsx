@@ -31,7 +31,9 @@ export default function Navbar() {
 			>
 				<Typography
 					css={linkStyle}
-					onClick={() => document.getElementById("AboutUs")?.scrollIntoView()}
+					onClick={() =>
+						document.getElementById("AboutUs")?.scrollIntoView()
+					}
 				>
 					About
 				</Typography>
@@ -41,12 +43,14 @@ export default function Navbar() {
 				>
 					Where&When
 				</Link>
-				<Link
-					to="./login"
+				<Typography
 					css={linkStyle}
+					onClick={() =>
+						document.getElementById("Community")?.scrollIntoView()
+					}
 				>
 					Community
-				</Link>
+				</Typography>
 				<Link
 					to="./login"
 					css={linkStyle}
@@ -88,6 +92,7 @@ const linkStyle = css`
 	color: var(--text-color);
 	text-decoration: none;
 	text-transform: none;
+	cursor: pointer;
 	&:hover {
 		color: var(--accent-main-purple);
 	}

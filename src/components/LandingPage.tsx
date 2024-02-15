@@ -1,5 +1,6 @@
 import AboutUs from "@landingpage/AboutUs";
 import Community from "@landingpage/Community";
+import Footer from "@landingpage/Footer";
 import InfoDivider from "@landingpage/InfoDivider";
 import MainContent from "@landingpage/MainContent";
 import Navbar from "@landingpage/Navbar";
@@ -17,12 +18,13 @@ export default function LandingPage() {
 			<Navbar />
 			<MainContent />
 			<SectionDivider />
-			<AboutUs/>
+			<AboutUs />
 			<SectionDivider />
-			<InfoDivider/>
+			<InfoDivider />
 			<SectionDivider />
 			<Community />
 			<SectionDivider />
+			<Footer />
 		</Box>
 	);
 }

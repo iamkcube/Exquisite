@@ -4,7 +4,7 @@ import Starburst from "@utils/Starburst";
 export default function Community() {
 	return (
 		<>
-			<Stack>
+			<Stack id="Community">
 				<Typography>Community</Typography>
 				<Divider
 					sx={{
