@@ -1,7 +1,7 @@
 interface StarburstProps {
 	color: string;
 	width: string;
-	style: object;
+	style?: React.CSSProperties;
 	fillColor?: string | undefined;
 }
 
@@ -9,7 +9,7 @@ export default function StarburstFloral({
 	color,
 	width,
 	style,
-	fillColor = "white",
+	fillColor,
 }: StarburstProps) {
 	return (
 		<svg

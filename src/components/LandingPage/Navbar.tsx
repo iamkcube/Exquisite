@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import { useAuth } from "@/contexts/AuthContext";
-import { Avatar } from "@mui/material";
+import { css } from "@emotion/react";
+import { Avatar, Typography } from "@mui/material";
 import RoundedButton from "@utils/RoundedButton";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -29,12 +29,12 @@ export default function Navbar() {
 					listStyle: "none",
 				}}
 			>
-				<Link
-					to="./login"
+				<Typography
 					css={linkStyle}
+					onClick={() => document.getElementById("AboutUs")?.scrollIntoView()}
 				>
 					About
-				</Link>
+				</Typography>
 				<Link
 					to="./login"
 					css={linkStyle}
@@ -87,6 +87,7 @@ export default function Navbar() {
 const linkStyle = css`
 	color: var(--text-color);
 	text-decoration: none;
+	text-transform: none;
 	&:hover {
 		color: var(--accent-main-purple);
 	}

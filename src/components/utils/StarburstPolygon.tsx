@@ -1,14 +1,20 @@
 interface StarburstProps {
 	color: string;
 	width: string;
+	style?: React.CSSProperties;
 }
 
-export default function StarburstPolygon({ color, width }: StarburstProps) {
+export default function StarburstPolygon({
+	color,
+	style,
+	width,
+}: StarburstProps) {
 	return (
 		<svg
 			width={width}
 			viewBox="0 0 68 68"
 			fill="none"
+			style={style}
 			xmlns="http://www.w3.org/2000/svg"
 		>
 			<mask

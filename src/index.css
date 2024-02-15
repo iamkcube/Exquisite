@@ -35,15 +35,16 @@
 			var(--accent-light-green),
 			var(--accent-cyan),
 			var(--accent-blue),
-			var(--accent-main-purple)
-			);
+			var(--accent-main-purple));
 	--radial-gradient-blue: radial-gradient(circle at center,
 			var(--accent-main-purple),
 			var(--accent-blue),
 			var(--accent-cyan),
 			var(--accent-blue),
-			var(--accent-main-purple)
-			);
+			var(--accent-main-purple));
+	--noise-layer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='noise' x='0%25' y='0%25' width='100%25' height='100%25'%3E%3CfeTurbulence baseFrequency='10 10' result='NOISE'/%3E%3C/filter%3E%3Crect x='0' y='0' width='100%25' height='100%25' filter='url(%23noise)'%3E%3C/rect%3E%3C/svg%3E");
+
+	--mini-font-size: 0.85rem;
 }
 
 body
@@ -92,9 +93,10 @@ ol[role='list']
 }
 
 /* Set core root defaults */
-html:focus-within
+html
 {
 	scroll-behavior: smooth;
+	scroll-padding-top: 2rem;
 }
 
 /* Set core body defaults */

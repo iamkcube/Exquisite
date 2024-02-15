@@ -1,15 +1,19 @@
-import LandingPage from "@components/LandingPage";
-import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LoginPage from "@components/LoginPage";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { AuthProvider } from "@/contexts/AuthContext";
+import LandingPage from "@components/LandingPage";
+import LoginPage from "@components/LoginPage";
+import { ThemeProvider, createTheme } from "@mui/material";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
 
 const theme = createTheme({
 	palette: {
 		mode: "dark",
 		primary: {
 			main: "#b282ff",
+			contrastText: "#ffffff",
+		},
+		secondary: {
+			main: "#2c4b9a",
 			contrastText: "#ffffff",
 		},
 	},
@@ -34,7 +38,6 @@ function App() {
 	return (
 		<AuthProvider>
 			<ThemeProvider theme={theme}>
-				{/* <CssBaseline /> */}
 				<BrowserRouter>
 					<Routes>
 						<Route

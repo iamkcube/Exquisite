@@ -1,10 +1,12 @@
 interface StarburstOutlineProps {
 	color: string;
 	width: string;
+	style?: React.CSSProperties;
 }
 
 export default function StarburstOutline({
 	color,
+	style,
 	width,
 }: StarburstOutlineProps) {
 	return (
@@ -12,6 +14,7 @@ export default function StarburstOutline({
 			width={width}
 			viewBox="0 0 68 68"
 			fill="none"
+			style={style}
 			xmlns="http://www.w3.org/2000/svg"
 		>
 			<path

@@ -33,7 +33,7 @@ export default function MainContent() {
 							}}
 						/>
 						<Typography
-							fontSize="0.85rem"
+							fontSize="var(--mini-font-size)"
 							sx={{
 								gridArea: "center",
 								textAlign: "center",
@@ -47,7 +47,7 @@ export default function MainContent() {
 						direction="column"
 						spacing={1}
 					>
-						<Typography fontSize="0.85rem">
+						<Typography fontSize="var(--mini-font-size)">
 							Douglass (Anna & <br />
 							Frederick) Park
 						</Typography>
@@ -55,7 +55,7 @@ export default function MainContent() {
 							flexItem
 							sx={dividerStyles}
 						/>
-						<Typography fontSize="0.85rem">Chicago</Typography>
+						<Typography fontSize="var(--mini-font-size)">Chicago</Typography>
 					</Stack>
 				</Stack>
 
@@ -75,7 +75,7 @@ export default function MainContent() {
 						direction="column"
 						spacing={1}
 					>
-						<Typography fontSize="0.85rem">
+						<Typography fontSize="var(--mini-font-size)">
 							music festival
 						</Typography>
 					</Stack>
@@ -93,7 +93,7 @@ export default function MainContent() {
 						spacing={1}
 					>
 						<Typography
-							fontSize="0.85rem"
+							fontSize="var(--mini-font-size)"
 							align="right"
 						>
 							Douglass (Anna & <br />
@@ -104,14 +104,17 @@ export default function MainContent() {
 							sx={dividerStyles}
 						/>
 						<Typography
-							fontSize="0.85rem"
+							fontSize="var(--mini-font-size)"
 							align="right"
 						>
 							Chicago
 						</Typography>
 					</Stack>
 					<Typography sx={fancyFontStyles}>Festival</Typography>
-					<StarburstLines width="8rem" color="var(--accent-main-purple)" />
+					<StarburstLines
+						width="8rem"
+						color="var(--accent-main-purple)"
+					/>
 				</Stack>
 			</Stack>
 		</>
@@ -121,7 +124,8 @@ export default function MainContent() {
 const fancyFontStyles = {
 	fontFamily: "var(--fancy-font)",
 	fontSize: "9rem",
-	backgroundImage: "var(--radial-gradient)",
+	backgroundImage: `var(--noise-layer), 
+	var(--radial-gradient)`,
 	backgroundSize: "200%",
 	backgroundPosition: "90% calc(50% + 50px)",
 	backgroundClip: "text",
@@ -130,6 +134,6 @@ const fancyFontStyles = {
 
 const dividerStyles = {
 	height: 4,
-	background: "var(--radial-gradient)",
+	backgroundImage: "var(--noise-layer), var(--radial-gradient)",
 	backgroundSize: "1000%",
 };
