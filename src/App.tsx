@@ -4,6 +4,7 @@ import LoginPage from "@components/LoginPage";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import EventsPage from "@components/EventsPage";
 
 const theme = createTheme({
 	palette: {
@@ -43,6 +44,10 @@ function App() {
 						<Route
 							path="/login"
 							element={<LoginPage />}
+						/>
+						<Route
+							path="/events"
+							element={<EventsPage />}
 						/>
 						<Route
 							path="/"

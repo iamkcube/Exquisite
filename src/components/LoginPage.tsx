@@ -174,7 +174,7 @@ export default function LoginPage() {
 							width: "100%",
 							aspectRatio: 1,
 							backgroundImage:
-								"linear-gradient(to right, #00000054,#00000054), var(--noise-layer), var(--radial-gradient-blue)",
+								"var(--gradient-overlay-black), var(--noise-layer), var(--radial-gradient-blue)",
 							backgroundSize: "500%",
 							backgroundPosition: "0% 0%",
 							backgroundRepeat: "repeat",

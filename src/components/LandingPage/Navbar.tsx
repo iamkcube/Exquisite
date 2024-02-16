@@ -56,10 +56,10 @@ export default function Navbar() {
 					Community
 				</Typography>
 				<Link
-					to="./login"
+					to="./events"
 					css={linkStyle}
 				>
-					Line Up
+					Events
 				</Link>
 				<Link
 					to="./login"
