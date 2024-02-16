@@ -178,7 +178,7 @@ export default function LoginPage() {
 							backgroundSize: "500%",
 							backgroundPosition: "0% 0%",
 							backgroundRepeat: "repeat",
-							animation: `${backgroundMove} 120s ease-in-out infinite alternate`,
+							animation: `${backgroundMove} 30s ease-in-out infinite alternate`,
 						}}
 					></Box>
 				</Box>

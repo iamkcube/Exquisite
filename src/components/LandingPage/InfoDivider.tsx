@@ -9,7 +9,7 @@ export default function InfoDivider() {
 			spacing={2}
 			justifyContent="center"
 			sx={{
-				width: "100vw",
+				width: "90vw",
 				marginLeft: "50%",
 				transform: "translateX(-50%)",
 			}}

@@ -9,6 +9,7 @@ export default function Community() {
 				<Divider
 					sx={{
 						marginBlockStart: "0.5em",
+						marginInlineStart: "-0.5rem",
 						marginBlockEnd: "4em",
 						bgcolor: "var(--accent-cyan)",
 						height: "2px",
@@ -25,10 +26,13 @@ export default function Community() {
 										"sideImage otherImage1 otherImage2"`,
 					columnGap: "1rem",
 					rowGap: "2rem",
+					// width: "100vw",
+					// marginInlineStart: "50%",
+					// translate: "-50% 0",
 				}}
 			>
 				<img
-					src="https://www.unsplash.it/600/1000"
+					src="https://www.unsplash.it/600/600"
 					alt=""
 					style={{
 						gridArea: "sideImage",
@@ -57,7 +61,7 @@ export default function Community() {
 							/>
 						))}
 					</Stack>
-					<Typography>
+					<Typography maxWidth="65ch">
 						Passionate about alternative music and culture that is
 						original and independent. We love self-expression and
 						are interested in new and unknown artists. Enjoy live

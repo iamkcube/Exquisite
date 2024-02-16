@@ -5,6 +5,7 @@ import InfoDivider from "@landingpage/InfoDivider";
 import MainContent from "@landingpage/MainContent";
 import Navbar from "@landingpage/Navbar";
 import SectionDivider from "@landingpage/SectionDivider";
+import WhereandWhen from "@landingpage/WhereandWhen";
 import { Box } from "@mui/material";
 
 export default function LandingPage() {
@@ -21,6 +22,8 @@ export default function LandingPage() {
 			<AboutUs />
 			<SectionDivider />
 			<InfoDivider />
+			<SectionDivider />
+			<WhereandWhen />
 			<SectionDivider />
 			<Community />
 			<SectionDivider />

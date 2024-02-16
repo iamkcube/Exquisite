@@ -14,12 +14,13 @@ export default function Footer() {
 			alignItems="center"
 			width="80vw"
 			marginInlineStart="40%"
+			marginBlockEnd="1rem"
 			sx={{
 				transform: "translateX(-40%)",
 			}}
 		>
-			<Typography color="var(--accent-blue)">Privacy Policy</Typography>
-			<Typography color="var(--accent-blue)">
+			<Typography color="var(--accent-blue)" fontSize="var(--mini-font-size)">Privacy Policy</Typography>
+			<Typography color="var(--accent-blue)" fontSize="var(--mini-font-size)">
 				Made with ❤️ by{" "}
 				<span
 					css={css`

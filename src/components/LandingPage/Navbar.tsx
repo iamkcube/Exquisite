@@ -37,12 +37,16 @@ export default function Navbar() {
 				>
 					About
 				</Typography>
-				<Link
-					to="./login"
+				<Typography
 					css={linkStyle}
+					onClick={() =>
+						document
+							.getElementById("WhereandWhen")
+							?.scrollIntoView()
+					}
 				>
 					Where&When
-				</Link>
+				</Typography>
 				<Typography
 					css={linkStyle}
 					onClick={() =>
@@ -80,7 +84,8 @@ export default function Navbar() {
 			<Link to="./login">
 				<Avatar
 					src={
-						currentUser?.photoURL || "https://www.unsplash.it/40/40"
+						currentUser?.photoURL ||
+						"https://www.unsplash.it/100/100"
 					}
 				></Avatar>
 			</Link>

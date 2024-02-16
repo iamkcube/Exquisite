@@ -18,6 +18,7 @@ export default function AboutUs() {
 				<Divider
 					sx={{
 						marginBlockStart: "0.5em",
+						marginInlineStart: "-0.5rem",
 						bgcolor: "var(--accent-cyan)",
 						height: "2px",
 					}}
