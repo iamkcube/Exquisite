@@ -1,15 +1,12 @@
 import { EventsList } from "@/assets/EventsList";
-import { SnackbarContext } from "@/contexts/SnackbarContext";
 import EventCard from "@components/EventsPage/EventCard";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Box, IconButton, Typography } from "@mui/material";
 import SectionDivider from "@utils/SectionDivider";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function EventsPage() {
 	const navigate = useNavigate();
-	const { openSnackbar } = useContext(SnackbarContext);
 
 	return (
 		<Box

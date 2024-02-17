@@ -2,7 +2,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import SnackbarProvider from "@/contexts/SnackbarContext/SnackbarProvider";
 import EventsPage from "@components/EventsPage";
 import LandingPage from "@components/LandingPage";
-import LoginPage from "@components/LoginPage";
+import LoginSignupPage from "@components/LoginSignupPage";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -44,8 +44,8 @@ function App() {
 					<BrowserRouter>
 						<Routes>
 							<Route
-								path="/login"
-								element={<LoginPage />}
+								path="/*"
+								element={<LoginSignupPage />}
 							/>
 							<Route
 								path="/events"

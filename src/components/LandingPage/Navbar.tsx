@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
 	const navigate = useNavigate();
-	const { currentUser } = useAuth();
+	const { userLoggedIn, currentUser } = useAuth();
 
 	return (
 		<nav
@@ -81,14 +81,16 @@ export default function Navbar() {
 					navigate("./login");
 				}}
 			/>
-			<Link to="./login">
-				<Avatar
-					src={
-						currentUser?.photoURL ||
-						"https://www.unsplash.it/100/100"
-					}
-				></Avatar>
-			</Link>
+			{userLoggedIn && (
+				<Link to="./login">
+					<Avatar
+						src={
+							currentUser?.photoURL ||
+							"https://www.unsplash.it/100/100"
+						}
+					></Avatar>
+				</Link>
+			)}
 		</nav>
 	);
 }

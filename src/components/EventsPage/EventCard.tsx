@@ -1,12 +1,13 @@
-import
-	{
-		Button,
-		Card,
-		CardActions,
-		CardContent,
-		CardMedia,
-		Typography,
-	} from "@mui/material";
+import { SnackbarContext } from "@/contexts/SnackbarContext";
+import {
+	Button,
+	Card,
+	CardActions,
+	CardContent,
+	CardMedia,
+	Typography,
+} from "@mui/material";
+import { useContext } from "react";
 
 interface EventCardProps {
 	heading: string;
@@ -21,8 +22,8 @@ export default function EventCard({
 	date,
 	info,
 }: EventCardProps) {
+	const { openSnackbar } = useContext(SnackbarContext);
 	async function registerForEvent() {
-		
 		// const docRef = await updateDoc(doc());
 	}
 

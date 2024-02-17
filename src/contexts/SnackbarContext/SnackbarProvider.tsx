@@ -1,4 +1,5 @@
 import { SnackbarContext } from "@/contexts/SnackbarContext";
+import { Grow, GrowProps } from "@mui/material";
 import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
 import { ReactNode, useState } from "react";
 
@@ -36,6 +37,10 @@ export default function SnackbarProvider({
 		setState({ ...state, open: false });
 	};
 
+	function GrowTransition(props: GrowProps) {
+		return <Grow {...props} />;
+	}
+
 	return (
 		<SnackbarContext.Provider value={{ openSnackbar }}>
 			{children}
@@ -43,9 +48,10 @@ export default function SnackbarProvider({
 				anchorOrigin={{ vertical, horizontal }}
 				open={open}
 				onClose={handleClose}
-				autoHideDuration={5000}
+				autoHideDuration={3000}
+				TransitionComponent={GrowTransition}
 				message={message}
-				key={vertical + horizontal}
+				key={new Date().getTime()}
 			/>
 		</SnackbarContext.Provider>
 	);
