@@ -54,8 +54,9 @@ export default function Community() {
 						>
 							We are Indie Music Lovers!!!
 						</Typography>
-						{[1, 2, 3, 4, 5].map(() => (
+						{[1, 2, 3, 4, 5].map((_, index) => (
 							<Starburst
+								key={index}
 								color="var(--accent-light-green)"
 								width="1.75rem"
 							/>

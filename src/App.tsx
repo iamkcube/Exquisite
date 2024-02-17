@@ -1,10 +1,11 @@
 import { AuthProvider } from "@/contexts/AuthContext";
+import SnackbarProvider from "@/contexts/SnackbarContext/SnackbarProvider";
+import EventsPage from "@components/EventsPage";
 import LandingPage from "@components/LandingPage";
 import LoginPage from "@components/LoginPage";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import EventsPage from "@components/EventsPage";
 
 const theme = createTheme({
 	palette: {
@@ -38,24 +39,26 @@ const theme = createTheme({
 function App() {
 	return (
 		<AuthProvider>
-			<ThemeProvider theme={theme}>
-				<BrowserRouter>
-					<Routes>
-						<Route
-							path="/login"
-							element={<LoginPage />}
-						/>
-						<Route
-							path="/events"
-							element={<EventsPage />}
-						/>
-						<Route
-							path="/"
-							element={<LandingPage />}
-						/>
-					</Routes>
-				</BrowserRouter>
-			</ThemeProvider>
+			<SnackbarProvider>
+				<ThemeProvider theme={theme}>
+					<BrowserRouter>
+						<Routes>
+							<Route
+								path="/login"
+								element={<LoginPage />}
+							/>
+							<Route
+								path="/events"
+								element={<EventsPage />}
+							/>
+							<Route
+								path="/"
+								element={<LandingPage />}
+							/>
+						</Routes>
+					</BrowserRouter>
+				</ThemeProvider>
+			</SnackbarProvider>
 		</AuthProvider>
 	);
 }

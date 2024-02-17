@@ -1,22 +1,47 @@
 import { EventsList } from "@/assets/EventsList";
+import { SnackbarContext } from "@/contexts/SnackbarContext";
 import EventCard from "@components/EventsPage/EventCard";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Box, IconButton, Typography } from "@mui/material";
 import SectionDivider from "@utils/SectionDivider";
-import { Box, Typography } from "@mui/material";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function EventsPage() {
+	const navigate = useNavigate();
+	const { openSnackbar } = useContext(SnackbarContext);
+
 	return (
 		<Box
 			width="min(100% - 4rem, 1400px)"
 			marginInline="auto"
 			marginBlock="4rem"
 		>
-			<Typography
-				fontFamily="var(--fancy-font)"
-				textAlign="center"
-				style={fancyFontStyles}
+			<Box
+				sx={{
+					display: "grid",
+					gridTemplateColumns: "1fr auto 1fr",
+					justifyContent: "center",
+				}}
 			>
-				All Events
-			</Typography>
+				<IconButton
+					onClick={() => navigate("../")}
+					sx={{
+						justifySelf: "start",
+						alignSelf: "center",
+					}}
+				>
+					<ArrowBackIcon />
+				</IconButton>
+				<Typography
+					fontFamily="var(--fancy-font)"
+					textAlign="center"
+					style={fancyFontStyles}
+				>
+					All Events
+				</Typography>
+				<></>
+			</Box>
 			<SectionDivider height={40} />
 			<Box
 				sx={{

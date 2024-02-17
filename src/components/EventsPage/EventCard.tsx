@@ -1,11 +1,12 @@
-import {
-	Card,
-	CardMedia,
-	CardContent,
-	Typography,
-	CardActions,
-	Button,
-} from "@mui/material";
+import
+	{
+		Button,
+		Card,
+		CardActions,
+		CardContent,
+		CardMedia,
+		Typography,
+	} from "@mui/material";
 
 interface EventCardProps {
 	heading: string;
@@ -20,6 +21,11 @@ export default function EventCard({
 	date,
 	info,
 }: EventCardProps) {
+	async function registerForEvent() {
+		
+		// const docRef = await updateDoc(doc());
+	}
+
 	return (
 		<Card
 			sx={{
@@ -64,8 +70,8 @@ export default function EventCard({
 					backgroundColor: "var(--body-color)",
 				}}
 			>
-				<Button size="small">Register</Button>
-				<Button size="small">Learn More</Button>
+				<Button onClick={registerForEvent}>Register</Button>
+				<Button>Learn More</Button>
 			</CardActions>
 		</Card>
 	);
