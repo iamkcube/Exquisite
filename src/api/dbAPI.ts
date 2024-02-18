@@ -1,5 +1,6 @@
 import { db, storage } from "@/config/firebase";
 import {
+	arrayRemove,
 	arrayUnion,
 	collection,
 	doc,
@@ -22,13 +23,19 @@ interface eventSchema {
 export async function handleCreateUserInDB(
 	name: string,
 	email: string,
-	photo: File | undefined
+	photo: File | string | undefined
 ) {
 	let photoUrl =
 		"https://source.unsplash.com/random/400x400/?profile,picture";
+
 	if (photo) {
-		photoUrl = await handleUpload(photo);
+		if (typeof photo === "string") {
+			photoUrl = photo;
+		} else if (photo instanceof File) {
+			photoUrl = await handleUpload(photo);
+		}
 	}
+
 	await setDoc(doc(db, "users", email), {
 		name,
 		createdAt: serverTimestamp(),
@@ -53,16 +60,14 @@ const handleUpload = async (photo: File) => {
 	return url;
 };
 
-export async function handleAddUserEvent({
-	email,
-	userEventIds,
-}: {
-	email: string;
-	userEventIds: string[];
-}) {
+export async function handleAddRemoveUserEvent(
+	remove: boolean,
+	email: string,
+	userEventId: string
+) {
 	await updateDoc(doc(db, "users", email), {
 		updatedAt: serverTimestamp(),
-		userEvents: arrayUnion(...userEventIds),
+		userEvents: remove ? arrayRemove(userEventId) : arrayUnion(userEventId),
 	});
 }
 

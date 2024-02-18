@@ -1,14 +1,22 @@
-import { db } from "@/config/firebase";
 import { useAuth } from "@/contexts/AuthContext";
 import { SnackbarContext } from "@/contexts/SnackbarContext";
-import { Box, Card, CardContent, Stack, Typography } from "@mui/material";
+import { handleAddRemoveUserEvent } from "@api/dbAPI";
+import
+	{
+		Box,
+		Card,
+		CardContent,
+		Stack,
+		SxProps,
+		Theme,
+		Typography,
+	} from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import RoundedButton from "@utils/RoundedButton";
 import Starburst from "@utils/Starburst";
 import StarburstLines from "@utils/StarburstLines";
 import StarburstOutline from "@utils/StarburstOutline";
-import { updateDoc, doc, arrayRemove, arrayUnion } from "firebase/firestore";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 interface EventCardAwesomeProps {
 	dark?: boolean;
@@ -39,11 +47,11 @@ export default function EventCardAwesome({
 	} = useMutation({
 		mutationFn: async (isRegistered: boolean) => {
 			if (userDoc && userDoc?.email) {
-				await updateDoc(doc(db, "users", userDoc.email), {
-					userEvents: isRegistered
-						? arrayRemove(eventId)
-						: arrayUnion(eventId),
-				});
+				await handleAddRemoveUserEvent(
+					isRegistered,
+					userDoc.email,
+					eventId
+				);
 
 				setLoadingTillUserDocFetches(true);
 
@@ -56,8 +64,7 @@ export default function EventCardAwesome({
 					} for ${eventName}`
 				);
 			} else {
-				openSnackbar(`Sign Up first!`);
-				console.log(userDoc);
+				openSnackbar(`Sign In first!`);
 			}
 		},
 	});
@@ -68,45 +75,7 @@ export default function EventCardAwesome({
 	return (
 		<Card
 			elevation={0}
-			sx={{
-				position: "relative",
-				backgroundImage: `var(--noise-layer),
-			radial-gradient(ellipse at 80% 60%,
-				var(--accent-white),
-				var(--accent-main-purple),
-				var(--accent-white))`,
-				borderRadius: 0,
-				color: dark ? "var(--accent-white)" : "var(--text-color-dark)",
-				"&::before": {
-					content: `''`,
-					position: "absolute",
-					top: 0,
-					right: 0,
-					bottom: 0,
-					left: 0,
-					backgroundImage: `var(--noise-layer),
-					radial-gradient(ellipse at 80% 60%,
-						var(--accent-blue),
-						var(--accent-main-purple),
-						var(--accent-blue))`,
-					zIndex: 1,
-					transition: "opacity 0.5s linear",
-					opacity: dark ? 1 : 0,
-				},
-				"&::after": {
-					content: '""',
-					position: "absolute",
-					bottom: 0,
-					left: 0,
-					right: 0,
-					backgroundImage: `linear-gradient(to top, var(${
-						dark ? "--accent-black-for-gradient" : "--accent-white"
-					}), transparent)`,
-					height: "50%",
-					zIndex: 2,
-				},
-				transition: "color 0.5s ease-in",
-			}}
+			sx={cardStyles(dark)}
 		>
 			<Stack
 				sx={{
@@ -201,4 +170,64 @@ export default function EventCardAwesome({
 			</CardContent>
 		</Card>
 	);
+}
+
+function cardStyles(dark: boolean): SxProps<Theme> {
+	return {
+		position: "relative",
+		backgroundImage: `var(--noise-layer),
+		radial-gradient(ellipse at 80% 60%,
+			var(--accent-white),
+			var(--accent-main-purple),
+			var(--accent-white))`,
+		borderRadius: 0,
+		color: dark ? "var(--accent-white)" : "var(--text-color-dark)",
+		backgroundSize: "125% 125%",
+		backgroundPosition: "100% 100%",
+		transition: `color 0.5s ease-in,
+					 background-position 500ms ease-in-out,
+					 background-size 500ms ease-in-out
+					 `,
+		"&::before": {
+			content: `''`,
+			position: "absolute",
+			top: 0,
+			right: 0,
+			bottom: 0,
+			left: 0,
+			backgroundImage: `var(--noise-layer),
+			radial-gradient(ellipse at 80% 60%,
+				var(--accent-blue),
+				var(--accent-main-purple),
+				var(--accent-blue))`,
+			backgroundSize: "125% 125%",
+			backgroundPosition: "100% 100%",
+			zIndex: 1,
+			transition: `opacity 0.5s linear,
+						 background-position 500ms ease-in-out,
+						 background-size 500ms ease-in-out
+						 `,
+			opacity: dark ? 1 : 0,
+		},
+		"&::after": {
+			content: '""',
+			position: "absolute",
+			bottom: 0,
+			left: 0,
+			right: 0,
+			backgroundImage: `linear-gradient(to top, var(${
+				dark ? "--accent-black-for-gradient" : "--accent-white"
+			}), transparent)`,
+			height: "50%",
+			zIndex: 2,
+		},
+		"&:hover": {
+			backgroundSize: "100% 100%",
+			backgroundPosition: "100% 100%",
+		},
+		"&:hover::before": {
+			backgroundSize: "100% 100%",
+			backgroundPosition: "100% 100%",
+		},
+	};
 }

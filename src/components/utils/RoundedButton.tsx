@@ -36,12 +36,11 @@ export default function RoundedButton({
 			onClick={onClick}
 			sx={{
 				borderRadius: 100,
-				borderWidth: borderWidth,
 				paddingInline: "2rem",
 				paddingBlock: "0.6rem",
 				color: "var(--text-color)",
 				textTransform: "none",
-				"&:hover": {
+				"&.MuiLoadingButton-root": {
 					borderWidth: borderWidth,
 				},
 				...sx,

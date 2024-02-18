@@ -58,7 +58,7 @@ export default function EventCard({
 					} for ${heading}`
 				);
 			} else {
-				openSnackbar(`Sign Up first!`);
+				openSnackbar(`Sign In first!`);
 				console.log(userDoc);
 			}
 		},

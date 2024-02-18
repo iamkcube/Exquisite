@@ -165,7 +165,7 @@ export default function SignupPage({
 					isLoading={isLoadingSignUp}
 				/>
 				<RoundedButton
-					text="Sign In with Google"
+					text="Sign Up with Google"
 					// contained
 					color="secondary"
 					onClick={mutateSignUpWithGoogle}

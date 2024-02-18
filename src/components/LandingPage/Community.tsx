@@ -66,6 +66,7 @@ export default function Community() {
 				<img
 					src="https://source.unsplash.com/random/600x960/?music,festival"
 					alt=""
+					loading="lazy"
 					style={{
 						gridArea: "sideImage",
 						width: "100%",
@@ -76,6 +77,7 @@ export default function Community() {
 				<img
 					src="https://source.unsplash.com/random/230x330/?music,festival"
 					alt=""
+					loading="lazy"
 					style={{
 						gridArea: "otherImage1",
 						width: "100%",
@@ -86,6 +88,7 @@ export default function Community() {
 				<img
 					src="https://source.unsplash.com/random/480x480/?music,festival"
 					alt=""
+					loading="lazy"
 					style={{
 						gridArea: "otherImage2",
 						width: "100%",

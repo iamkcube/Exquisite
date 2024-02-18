@@ -13,18 +13,30 @@ export async function handleSignUp(
 	password: string,
 	photo: File | undefined
 ) {
-	const obj = await createUserWithEmailAndPassword(auth, email, password);
+	await createUserWithEmailAndPassword(auth, email, password);
 
-	console.log("🚀 ~ handleSignUp ~ obj:", obj);
 	console.log("Signup successful");
 
 	await handleCreateUserInDB(name, email, photo);
 }
 
 export async function handleSignUpWithGoogle() {
-	const obj2 = await signInWithPopup(auth, googleProvider);
-	console.log("🚀 ~ handleSignUpWithGoogle ~ obj2:", obj2);
-	console.log("Signup successful");
+	const googleSignInDetails = await signInWithPopup(auth, googleProvider);
+	const { displayName, email, photoURL } = googleSignInDetails.user;
+
+	if (googleSignInDetails?._tokenResponse?.isNewUser) {
+		if (displayName && email) {
+			await handleCreateUserInDB(
+				displayName,
+				email,
+				photoURL || undefined
+			);
+		} else {
+			console.log("One or more required fields are null");
+		}
+	}
+
+	console.log("Signup with google successful");
 }
 
 export async function handleLogin(email: string, password: string) {
