@@ -31,16 +31,6 @@ export default function Community() {
 					// translate: "-50% 0",
 				}}
 			>
-				<img
-					src="https://www.unsplash.it/600/600"
-					alt=""
-					style={{
-						gridArea: "sideImage",
-						width: "100%",
-						minHeight: "100%",
-						objectFit: "cover",
-					}}
-				/>
 				<Stack
 					sx={{
 						gridArea: "content",
@@ -74,7 +64,17 @@ export default function Community() {
 					</Typography>
 				</Stack>
 				<img
-					src="https://www.unsplash.it/600/800"
+					src="https://source.unsplash.com/random/600x960/?music,festival"
+					alt=""
+					style={{
+						gridArea: "sideImage",
+						width: "100%",
+						minHeight: "100%",
+						objectFit: "cover",
+					}}
+				/>
+				<img
+					src="https://source.unsplash.com/random/230x330/?music,festival"
 					alt=""
 					style={{
 						gridArea: "otherImage1",
@@ -84,7 +84,7 @@ export default function Community() {
 					}}
 				/>{" "}
 				<img
-					src="https://www.unsplash.it/800/800"
+					src="https://source.unsplash.com/random/480x480/?music,festival"
 					alt=""
 					style={{
 						gridArea: "otherImage2",

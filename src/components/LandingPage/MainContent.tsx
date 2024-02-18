@@ -123,6 +123,7 @@ export default function MainContent() {
 const fancyFontStyles = {
 	fontFamily: "var(--fancy-font)",
 	fontSize: "9rem",
+	paddingInline: "0.7rem",
 	backgroundImage: `var(--noise-layer), 
 	var(--radial-gradient)`,
 	backgroundSize: "200%",

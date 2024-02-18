@@ -10,6 +10,7 @@
 
 	/* Variable */
 	--body-color: hsl(0, 0%, 16%);
+	--text-color-dark: hsl(0, 0%, 16%);
 	--text-color: hsl(0, 0%, 90%);
 	--fancy-font: "Lostar";
 	--accent-light-green: #75e494;
@@ -18,6 +19,7 @@
 	--accent-cyan: #32ffe6;
 	--accent-blue: #3461d3;
 	--accent-white: #d1d1d1;
+	--accent-black-for-gradient: hsla(0, 0%, 11%, 0.9);
 	--linear-gradient: linear-gradient(to top right,
 			var(--accent-main-purple)15%,
 			var(--accent-blue)35%,
@@ -98,7 +100,7 @@ ol[role='list']
 html
 {
 	scroll-behavior: smooth;
-	scroll-padding-top: 2rem;
+	scroll-padding-top: 7rem;
 }
 
 /* Set core body defaults */

@@ -2,7 +2,8 @@ import { LoadingButton } from "@mui/lab";
 
 type RoundedButtonProps = {
 	text: string;
-	padding?: string;
+	isLoading?: boolean;
+	borderWidth?: number;
 	color?:
 		| "primary"
 		| "inherit"
@@ -13,15 +14,14 @@ type RoundedButtonProps = {
 		| "warning"
 		| undefined;
 	contained?: boolean;
-	isLoading?: boolean;
 	sx?: React.CSSProperties;
 	onClick: () => void;
 };
 
 export default function RoundedButton({
 	text,
-	padding,
 	isLoading,
+	borderWidth = 2,
 	color = "primary",
 	contained = false,
 	sx,
@@ -36,9 +36,14 @@ export default function RoundedButton({
 			onClick={onClick}
 			sx={{
 				borderRadius: 100,
-				paddingInline: padding,
+				borderWidth: borderWidth,
+				paddingInline: "2rem",
+				paddingBlock: "0.6rem",
 				color: "var(--text-color)",
 				textTransform: "none",
+				"&:hover": {
+					borderWidth: borderWidth,
+				},
 				...sx,
 			}}
 		>

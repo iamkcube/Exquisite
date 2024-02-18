@@ -12,10 +12,18 @@ export default function Navbar() {
 	return (
 		<nav
 			style={{
+				position: "sticky",
+				top: 0,
 				display: "flex",
 				justifyContent: "space-between",
 				alignItems: "center",
-				marginBlock: "2em",
+				marginBlock: "1em",
+				paddingBlock: "1em",
+				backgroundColor: "var(--body-color)",
+				zIndex: 100,
+				// full-bleed
+				boxShadow: "0 0 0 100vmax var(--body-color)",
+				clipPath: "inset(0 -100vmax)",
 			}}
 		>
 			<img
@@ -76,7 +84,6 @@ export default function Navbar() {
 			</ul>
 			<RoundedButton
 				text="Buy a Ticket"
-				padding="2rem"
 				onClick={() => {
 					navigate("./login");
 				}}

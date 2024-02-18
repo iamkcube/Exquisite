@@ -1,6 +1,6 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { handleGetAllEvents } from "@api/dbAPI";
-import EventCard from "@components/EventsPage/EventCard";
+import EventCardAwesome from "@components/EventsPage/EventCardAwesome";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Avatar, Box, IconButton, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
@@ -50,7 +50,13 @@ export default function EventsPage() {
 					All Events
 				</Typography>
 				{userLoggedIn && (
-					<Link to="../login">
+					<Link
+						to="../login"
+						style={{
+							alignSelf: "center",
+							justifySelf: "end",
+						}}
+					>
 						<Avatar
 							src={
 								userDoc?.photoUrl ||
@@ -65,7 +71,7 @@ export default function EventsPage() {
 			<Box
 				sx={{
 					display: "grid",
-					gridTemplateColumns: "repeat(auto-fit, minmax( 300px,1fr))",
+					gridTemplateColumns: "repeat(auto-fit, minmax( 600px, 1fr ))",
 					// placeContent: "center",
 					gap: "1rem",
 					// justifyContent: "center",
@@ -83,11 +89,13 @@ export default function EventsPage() {
 					?.sort((a, b) => a.date.seconds - b.date.seconds)
 					?.map((event, index) => {
 						return (
-							<EventCard
+							<EventCardAwesome
+								// dark={!!(index % 2)}
+								dark={(userDoc?.userEvents ?? []).includes(event.id)}
 								key={index}
 								eventId={event.id}
-								heading={event.eventName}
-								subheading={event.location}
+								eventName={event.eventName}
+								location={event.location}
 								date={new Date(
 									event.date.seconds * 1000
 								).toLocaleDateString("en-US", {
@@ -95,7 +103,7 @@ export default function EventsPage() {
 									month: "long",
 									day: "numeric",
 								})}
-								info={event.description}
+								description={event.description}
 							/>
 						);
 					})}{" "}
@@ -107,6 +115,7 @@ export default function EventsPage() {
 const fancyFontStyles = {
 	fontFamily: "var(--fancy-font)",
 	fontSize: "4rem",
+	paddingInline: "0.25rem",
 	backgroundImage: `var(--noise-layer), 
 	var(--radial-gradient)`,
 	backgroundSize: "125%",

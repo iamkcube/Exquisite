@@ -112,7 +112,9 @@ export default function EventCard({
 				}}
 			>
 				<LoadingButton
-					loading={isLoadingRegisterForEvent || loadingTillUserDocFetches}
+					loading={
+						isLoadingRegisterForEvent || loadingTillUserDocFetches
+					}
 					onClick={() =>
 						mutateRegisterForEvent(
 							(userDoc?.userEvents ?? []).includes(eventId)

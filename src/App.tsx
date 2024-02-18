@@ -6,6 +6,7 @@ import LoginSignupPage from "@components/LoginSignupPage";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import ScrollToTop from "@utils/ScrollToTop";
 
 const theme = createTheme({
 	palette: {
@@ -15,8 +16,8 @@ const theme = createTheme({
 			contrastText: "#ffffff",
 		},
 		secondary: {
-			main: "#2c4b9a",
-			contrastText: "#ffffff",
+			main: "#75e494",
+			contrastText: "#222222",
 		},
 	},
 	typography: {
@@ -42,6 +43,7 @@ function App() {
 			<SnackbarProvider>
 				<ThemeProvider theme={theme}>
 					<BrowserRouter>
+						<ScrollToTop />
 						<Routes>
 							<Route
 								path="/*"

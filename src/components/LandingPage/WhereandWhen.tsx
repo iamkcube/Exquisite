@@ -48,7 +48,7 @@ export default function WhereandWhen() {
 					</Typography>
 					<RoundedButton
 						text="Buy a Ticket"
-						padding="2rem"
+						
 						sx={{
 							alignSelf: "start",
 						}}

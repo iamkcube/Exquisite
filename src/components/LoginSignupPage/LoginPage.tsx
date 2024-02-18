@@ -99,14 +99,14 @@ export default function LoginPage({
 			>
 				<RoundedButton
 					text="Login"
-					contained
+					// contained
 					color="secondary"
 					onClick={mutateLogin}
 					isLoading={isLoadingLogin}
 				/>
 				<RoundedButton
 					text="Sign In with Google"
-					contained
+					// contained
 					color="secondary"
 					onClick={mutateSignUpWithGoogle}
 					isLoading={isLoadingSignUpWithGoogle}
@@ -114,7 +114,7 @@ export default function LoginPage({
 				{userLoggedIn && (
 					<RoundedButton
 						text="Sign Out"
-						contained
+						// contained
 						color="secondary"
 						onClick={mutateSignOut}
 						isLoading={isLoadingSignOut}
