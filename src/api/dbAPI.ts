@@ -1,12 +1,23 @@
 import { db, storage } from "@/config/firebase";
 import {
-	setDoc,
-	doc,
-	updateDoc,
-	serverTimestamp,
 	arrayUnion,
+	collection,
+	doc,
+	getDocs,
+	serverTimestamp,
+	setDoc,
+	updateDoc,
 } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+
+interface eventSchema {
+	date: { seconds: number; nanoseconds: number };
+	description: string;
+	eventName: string;
+	id: string;
+	location: string;
+	userEvents: string[];
+}
 
 export async function handleCreateUserInDB(
 	name: string,
@@ -53,4 +64,14 @@ export async function handleAddUserEvent({
 		updatedAt: serverTimestamp(),
 		userEvents: arrayUnion(...userEventIds),
 	});
+}
+
+export async function handleGetAllEvents() {
+	const data = await getDocs(collection(db, "events"));
+	const filteredData = data.docs.map((doc) => ({
+		...(doc.data() as eventSchema),
+		id: doc.id,
+	}));
+
+	return filteredData;
 }

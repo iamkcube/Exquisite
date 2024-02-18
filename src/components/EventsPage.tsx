@@ -1,12 +1,24 @@
-import { EventsList } from "@/assets/EventsList";
+import { useAuth } from "@/contexts/AuthContext";
+import { handleGetAllEvents } from "@api/dbAPI";
 import EventCard from "@components/EventsPage/EventCard";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Avatar, Box, IconButton, Typography } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
 import SectionDivider from "@utils/SectionDivider";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function EventsPage() {
 	const navigate = useNavigate();
+	const { userLoggedIn, userDoc, currentUser } = useAuth();
+
+	const {
+		data: eventsList,
+		// isLoading,
+		// isError,
+	} = useQuery({
+		queryFn: async () => await handleGetAllEvents(),
+		queryKey: ["eventsList"],
+	});
 
 	return (
 		<Box
@@ -37,7 +49,17 @@ export default function EventsPage() {
 				>
 					All Events
 				</Typography>
-				<></>
+				{userLoggedIn && (
+					<Link to="../login">
+						<Avatar
+							src={
+								userDoc?.photoUrl ||
+								currentUser?.photoURL ||
+								"https://www.unsplash.it/100/100"
+							}
+						></Avatar>
+					</Link>
+				)}
 			</Box>
 			<SectionDivider height={40} />
 			<Box
@@ -57,17 +79,26 @@ export default function EventsPage() {
 					},
 				}}
 			>
-				{EventsList.map((event, index) => {
-					return (
-						<EventCard
-							key={index}
-							heading={event.eventName}
-							subheading={event.location}
-							date={event.date}
-							info={event.description}
-						/>
-					);
-				})}{" "}
+				{eventsList
+					?.sort((a, b) => a.date.seconds - b.date.seconds)
+					?.map((event, index) => {
+						return (
+							<EventCard
+								key={index}
+								eventId={event.id}
+								heading={event.eventName}
+								subheading={event.location}
+								date={new Date(
+									event.date.seconds * 1000
+								).toLocaleDateString("en-US", {
+									year: "numeric",
+									month: "long",
+									day: "numeric",
+								})}
+								info={event.description}
+							/>
+						);
+					})}{" "}
 			</Box>
 		</Box>
 	);

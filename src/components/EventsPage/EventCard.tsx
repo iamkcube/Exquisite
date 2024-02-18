@@ -1,4 +1,7 @@
+import { db } from "@/config/firebase";
+import { useAuth } from "@/contexts/AuthContext";
 import { SnackbarContext } from "@/contexts/SnackbarContext";
+import { LoadingButton } from "@mui/lab";
 import {
 	Button,
 	Card,
@@ -7,9 +10,12 @@ import {
 	CardMedia,
 	Typography,
 } from "@mui/material";
-import { useContext } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { useContext, useEffect, useState } from "react";
 
 interface EventCardProps {
+	eventId: string;
 	heading: string;
 	subheading: string;
 	date: string;
@@ -17,15 +23,49 @@ interface EventCardProps {
 }
 
 export default function EventCard({
+	eventId,
 	heading,
 	subheading,
 	date,
 	info,
 }: EventCardProps) {
+	const queryClient = useQueryClient();
+	const { userDoc } = useAuth();
 	const { openSnackbar } = useContext(SnackbarContext);
-	async function registerForEvent() {
-		// const docRef = await updateDoc(doc());
-	}
+	const [loadingTillUserDocFetches, setLoadingTillUserDocFetches] =
+		useState(false);
+
+	const {
+		mutate: mutateRegisterForEvent,
+		isPending: isLoadingRegisterForEvent,
+	} = useMutation({
+		mutationFn: async (isRegistered: boolean) => {
+			if (userDoc && userDoc?.email) {
+				await updateDoc(doc(db, "users", userDoc.email), {
+					userEvents: isRegistered
+						? arrayRemove(eventId)
+						: arrayUnion(eventId),
+				});
+
+				setLoadingTillUserDocFetches(true);
+
+				queryClient.invalidateQueries({ queryKey: ["eventsList"] });
+				queryClient.invalidateQueries({ queryKey: ["userDoc"] });
+
+				openSnackbar(
+					`You have successfully ${
+						isRegistered ? "deregistered" : "registered"
+					} for ${heading}`
+				);
+			} else {
+				openSnackbar(`Sign Up first!`);
+				console.log(userDoc);
+			}
+		},
+	});
+	useEffect(() => {
+		setLoadingTillUserDocFetches(false);
+	}, [userDoc]);
 
 	return (
 		<Card
@@ -71,7 +111,18 @@ export default function EventCard({
 					backgroundColor: "var(--body-color)",
 				}}
 			>
-				<Button onClick={registerForEvent}>Register</Button>
+				<LoadingButton
+					loading={isLoadingRegisterForEvent || loadingTillUserDocFetches}
+					onClick={() =>
+						mutateRegisterForEvent(
+							(userDoc?.userEvents ?? []).includes(eventId)
+						)
+					}
+				>
+					{(userDoc?.userEvents ?? []).includes(eventId)
+						? "Deregister"
+						: "Register"}
+				</LoadingButton>
 				<Button>Learn More</Button>
 			</CardActions>
 		</Card>

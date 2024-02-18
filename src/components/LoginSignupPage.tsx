@@ -1,11 +1,12 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { SnackbarContext } from "@/contexts/SnackbarContext";
-import {
-	handleLogin,
-	handleSignOut,
-	handleSignUp,
-	handleSignUpWithGoogle,
-} from "@api/authAPI";
+import
+	{
+		handleLogin,
+		handleSignOut,
+		handleSignUp,
+		handleSignUpWithGoogle,
+	} from "@api/authAPI";
 import LoginPage from "@components/LoginSignupPage/LoginPage";
 import OverlapStuff from "@components/LoginSignupPage/OverlapStuff";
 import SignupPage from "@components/LoginSignupPage/SignupPage";
@@ -64,6 +65,7 @@ export default function LoginSignupPage() {
 			) {
 				openSnackbar("Already Signed Up. Try logging in.");
 			}
+			console.log(error);
 		},
 	});
 
