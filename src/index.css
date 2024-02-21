@@ -48,7 +48,7 @@
 	--gradient-overlay-black-level: 0.3;
 	--gradient-overlay-black: linear-gradient(to right, hsla(0, 0%, 0%, var(--gradient-overlay-black-level)), hsla(0, 0%, 0%, var(--gradient-overlay-black-level)));
 
-	--mini-font-size: 0.85rem;
+	--mini-font-size: clamp(0.65rem, 2vw, 0.85rem);
 }
 
 body

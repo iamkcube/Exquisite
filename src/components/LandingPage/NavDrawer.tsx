@@ -16,6 +16,7 @@ export default function NavDrawer({
 				anchor={"right"}
 				open={isDrawerOpen}
 				onClose={() => setIsDrawerOpen(false)}
+				disableRestoreFocus
 			>
 				<NavbarLinks
 					forDrawer

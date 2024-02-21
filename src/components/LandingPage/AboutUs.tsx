@@ -1,7 +1,10 @@
+import { useOtherContext } from "@/contexts/OtherContext";
 import { Box, Divider, Stack, Typography } from "@mui/material";
 import Starburst from "@utils/Starburst";
 
 export default function AboutUs() {
+	const { isBigDevice } = useOtherContext();
+
 	return (
 		<Box
 			id="AboutUs"
@@ -9,7 +12,7 @@ export default function AboutUs() {
 				display: "grid",
 				gridTemplateColumns: "auto 1fr",
 				gridTemplateRows: "auto auto 1fr",
-				columnGap: "4rem",
+				columnGap: isBigDevice ? "4rem" : "1rem",
 				rowGap: "1rem",
 			}}
 		>

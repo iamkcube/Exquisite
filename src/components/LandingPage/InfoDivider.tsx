@@ -1,16 +1,22 @@
+import { useOtherContext } from "@/contexts/OtherContext";
 import { Box, Stack, Typography } from "@mui/material";
 import StarburstLines from "@utils/StarburstLines";
 import StarburstPolygon from "@utils/StarburstPolygon";
 
 export default function InfoDivider() {
+	const { isBigDevice } = useOtherContext();
+
+	const shapeWidth = isBigDevice ? "12rem" : "6rem";
+
 	return (
 		<Stack
-			direction="row"
-			spacing={2}
-			justifyContent="center"
 			sx={{
 				width: "90vw",
+				flexDirection: "row",
+				justifyContent: "center",
+				flexWrap: isBigDevice ? "nowrap" : "wrap",
 				marginLeft: "50%",
+				gap: isBigDevice ? 2 : 1,
 				transform: "translateX(-50%)",
 			}}
 		>
@@ -30,6 +36,7 @@ export default function InfoDivider() {
 				<Typography
 					gridArea="center"
 					textAlign="center"
+					fontSize={isBigDevice ? "auto" : "0.6rem"}
 				>
 					3 days
 				</Typography>
@@ -51,6 +58,7 @@ export default function InfoDivider() {
 				<Typography
 					gridArea="center"
 					textAlign="center"
+					fontSize={isBigDevice ? "auto" : "0.6rem"}
 				>
 					chill
 					<br /> & inspiring
@@ -74,6 +82,7 @@ export default function InfoDivider() {
 				<Typography
 					gridArea="center"
 					textAlign="center"
+					fontSize={isBigDevice ? "auto" : "0.6rem"}
 				>
 					top <br /> bands
 				</Typography>
@@ -87,7 +96,6 @@ export default function InfoDivider() {
 	);
 }
 
-const shapeWidth = "12rem";
 const overlapStyles: React.CSSProperties = {
 	display: "grid",
 	gridTemplateAreas: "center",

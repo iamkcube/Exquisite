@@ -19,38 +19,46 @@ export default function NavbarLinks({
 			sx={{
 				display: "flex",
 				flexDirection: forDrawer ? "column" : "row",
-				// gap: "1.5rem",
 				listStyle: "none",
 				width: forDrawer ? 250 : "auto",
 			}}
 			onClick={() => setIsDrawerOpen && setIsDrawerOpen(!isDrawerOpen)}
-			onKeyDown={() => setIsDrawerOpen && setIsDrawerOpen(!isDrawerOpen)}
+			// onKeyDown={() => setIsDrawerOpen && setIsDrawerOpen(!isDrawerOpen)}
 		>
-			<ListItem
-				css={linkStyle}
-				onClick={() => {
-					document.getElementById("AboutUs")?.scrollIntoView();
-					// setIsDrawerOpen && setIsDrawerOpen(!isDrawerOpen);
-				}}
-			>
-				About
+			<ListItem>
+				<Link
+					to="#AboutUs"
+					css={linkStyle}
+					onClick={() =>
+						document.getElementById("AboutUs")?.scrollIntoView()
+					}
+				>
+					About
+				</Link>
 			</ListItem>
-			<ListItem
-				css={linkStyle}
-				onClick={() => {
-					document.getElementById("WhereandWhen")?.scrollIntoView();
-					// setIsDrawerOpen && setIsDrawerOpen(!isDrawerOpen);
-				}}
-			>
-				Where&When
+			<ListItem>
+				<Link
+					to="#WhereandWhen"
+					css={linkStyle}
+					onClick={() =>
+						document
+							.getElementById("WhereandWhen")
+							?.scrollIntoView()
+					}
+				>
+					Where&When
+				</Link>
 			</ListItem>
-			<ListItem
-				css={linkStyle}
-				onClick={() =>
-					document.getElementById("Community")?.scrollIntoView()
-				}
-			>
-				Community
+			<ListItem>
+				<Link
+					to="#Community"
+					css={linkStyle}
+					onClick={() =>
+						document.getElementById("Community")?.scrollIntoView()
+					}
+				>
+					Community
+				</Link>
 			</ListItem>
 			<ListItem>
 				<Link

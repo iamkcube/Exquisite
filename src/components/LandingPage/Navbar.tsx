@@ -19,8 +19,6 @@ export default function Navbar() {
 			style={{
 				position: "sticky",
 				top: 0,
-				right:0,
-				left:0,
 				display: "flex",
 				justifyContent: "space-between",
 				alignItems: "center",

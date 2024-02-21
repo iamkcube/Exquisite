@@ -1,3 +1,4 @@
+import { useOtherContext } from "@/contexts/OtherContext";
 import { Box, Divider, Stack, Typography } from "@mui/material";
 import RoundedButton from "@utils/RoundedButton";
 import StarburstFloral from "@utils/StarburstFloral";
@@ -5,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function WhereandWhen() {
 	const navigate = useNavigate();
+	const { isBigDevice } = useOtherContext();
 
 	return (
 		<>
@@ -24,8 +26,9 @@ export default function WhereandWhen() {
 			<Box
 				sx={{
 					display: "grid",
-					gridTemplateColumns: "auto 1fr",
-					columnGap: "4rem",
+					gridTemplateColumns: isBigDevice ? "auto 1fr" : "auto",
+					gap: "4rem",
+					overflowX: "hidden",
 				}}
 			>
 				<Stack spacing="1rem">
@@ -48,7 +51,6 @@ export default function WhereandWhen() {
 					</Typography>
 					<RoundedButton
 						text="Buy a Ticket"
-						
 						sx={{
 							alignSelf: "start",
 						}}
@@ -60,6 +62,7 @@ export default function WhereandWhen() {
 				<Box
 					sx={{
 						position: "relative",
+						order: isBigDevice ? 1 : -1,
 					}}
 				>
 					<StarburstFloral

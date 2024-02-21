@@ -6,11 +6,6 @@ body
 	scrollbar-gutter: stable;
 }
 
-#root
-{
-	overflow-x: hidden;
-}
-
 ::-webkit-scrollbar
 {
 	background: transparent;

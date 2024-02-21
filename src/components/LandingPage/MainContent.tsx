@@ -1,16 +1,34 @@
+import { useOtherContext } from "@/contexts/OtherContext";
 import { Box, Divider, Stack, Typography } from "@mui/material";
 import StarburstFloral from "@utils/StarburstFloral";
 import StarburstLines from "@utils/StarburstLines";
 import StarburstOutline from "@utils/StarburstOutline";
 
 export default function MainContent() {
+	const { isBigDevice, isSmallDevice } = useOtherContext();
+
+	const fancyFontStyles: React.CSSProperties = {
+		fontFamily: "var(--fancy-font)",
+		fontSize: isBigDevice ? "9rem" : "4.5rem",
+		paddingInline: isBigDevice ? "0.7rem" : 0,
+		backgroundImage: `var(--noise-layer), 
+		var(--radial-gradient)`,
+		backgroundSize: "200%",
+		backgroundPosition: "90% calc(50% + 50px)",
+		backgroundClip: "text",
+		color: "transparent",
+		zIndex: 1,
+	};
+
 	return (
 		<>
 			<Stack
 				direction="column"
-				spacing={-8}
+				spacing={isBigDevice ? -8 : -2}
+				marginBlockStart={isBigDevice ? 0 : "10em"}
+				position="relative"
 			>
-				{/* 1st */}
+				{/* 1st --------------------------------------------------------------------------------- */}
 				<Stack
 					direction="row"
 					spacing={4}
@@ -22,10 +40,15 @@ export default function MainContent() {
 							display: "grid",
 							gridTemplateAreas: `"center"`,
 							placeItems: "center",
+							...(isSmallDevice && {
+								position: "absolute",
+								top: "-5rem",
+								left: "-1rem",
+							}),
 						}}
 					>
 						<StarburstFloral
-							width="8rem"
+							width={isBigDevice ? "8rem" : "5rem"}
 							color="var(--accent-main-purple)"
 							style={{
 								gridArea: "center",
@@ -45,6 +68,14 @@ export default function MainContent() {
 					<Stack
 						direction="column"
 						spacing={1}
+						sx={{
+							...(isSmallDevice && {
+								position: "absolute",
+								top: "-7rem",
+								right: 0,
+								textAlign: "center",
+							}),
+						}}
 					>
 						<Typography fontSize="var(--mini-font-size)">
 							Douglass (Anna & <br />
@@ -54,14 +85,16 @@ export default function MainContent() {
 							flexItem
 							sx={dividerStyles}
 						/>
-						<Typography fontSize="var(--mini-font-size)">Chicago</Typography>
+						<Typography fontSize="var(--mini-font-size)">
+							Chicago
+						</Typography>
 					</Stack>
 				</Stack>
 
-				{/* 2nd */}
+				{/* 2nd --------------------------------------------------------------------------------- */}
 				<Stack
 					direction="row"
-					spacing={4}
+					spacing={isBigDevice ? 4 : 3}
 					justifyContent="flex-start"
 					alignItems="center"
 				>
@@ -70,17 +103,12 @@ export default function MainContent() {
 						color={"var(--accent-green)"}
 						width={"6rem"}
 					/>
-					<Stack
-						direction="column"
-						spacing={1}
-					>
-						<Typography fontSize="var(--mini-font-size)">
-							music festival
-						</Typography>
-					</Stack>
+					<Typography fontSize="var(--mini-font-size)">
+						music festival
+					</Typography>
 				</Stack>
 
-				{/* 3rd */}
+				{/* 3rd --------------------------------------------------------------------------------- */}
 				<Stack
 					direction="row"
 					spacing={4}
@@ -90,11 +118,17 @@ export default function MainContent() {
 					<Stack
 						direction="column"
 						spacing={1}
+						sx={{
+							textAlign: isBigDevice ? "right" : "center",
+							...(isSmallDevice && {
+								position: "absolute",
+								bottom: "-6rem",
+								left: 0,
+								textAlign: "center",
+							}),
+						}}
 					>
-						<Typography
-							fontSize="var(--mini-font-size)"
-							align="right"
-						>
+						<Typography fontSize="var(--mini-font-size)">
 							Douglass (Anna & <br />
 							Frederick) Park
 						</Typography>
@@ -102,10 +136,7 @@ export default function MainContent() {
 							flexItem
 							sx={dividerStyles}
 						/>
-						<Typography
-							fontSize="var(--mini-font-size)"
-							align="right"
-						>
+						<Typography fontSize="var(--mini-font-size)">
 							Chicago
 						</Typography>
 					</Stack>
@@ -113,6 +144,11 @@ export default function MainContent() {
 					<StarburstLines
 						width="8rem"
 						color="var(--accent-main-purple)"
+						style={{
+							position: "absolute",
+							bottom: "-5.5rem",
+							right: "-1rem",
+						}}
 					/>
 				</Stack>
 			</Stack>
@@ -120,19 +156,7 @@ export default function MainContent() {
 	);
 }
 
-const fancyFontStyles = {
-	fontFamily: "var(--fancy-font)",
-	fontSize: "9rem",
-	paddingInline: "0.7rem",
-	backgroundImage: `var(--noise-layer), 
-	var(--radial-gradient)`,
-	backgroundSize: "200%",
-	backgroundPosition: "90% calc(50% + 50px)",
-	backgroundClip: "text",
-	color: "transparent",
-};
-
-const dividerStyles = {
+const dividerStyles: React.CSSProperties = {
 	height: 4,
 	backgroundImage: "var(--noise-layer), var(--radial-gradient)",
 	backgroundSize: "1000%",
