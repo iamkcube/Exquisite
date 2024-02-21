@@ -91,7 +91,8 @@ export default function EventsPage() {
 						return (
 							<EventCardAwesome
 								// dark={!!(index % 2)}
-								dark={(userDoc?.userEvents ?? []).includes(event.id)}
+								dark={(
+									userDoc?.userEvents ?? []).includes(event.id)}
 								key={index}
 								eventId={event.id}
 								eventName={event.eventName}

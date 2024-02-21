@@ -9,7 +9,7 @@ export default function WhereandWhen() {
 	return (
 		<>
 			<Stack id="WhereandWhen">
-				<Typography>Where&When</Typography>
+				<Typography fontWeight="bold">Where&When</Typography>
 				<Divider
 					sx={{
 						marginBlockStart: "0.5em",

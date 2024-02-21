@@ -5,7 +5,7 @@ export default function Community() {
 	return (
 		<>
 			<Stack id="Community">
-				<Typography>Community</Typography>
+				<Typography fontWeight="bold">Community</Typography>
 				<Divider
 					sx={{
 						marginBlockStart: "0.5em",

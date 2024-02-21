@@ -14,7 +14,7 @@ export default function AboutUs() {
 			}}
 		>
 			<Stack>
-				<Typography>About Us</Typography>
+				<Typography fontWeight="bold">About Us</Typography>
 				<Divider
 					sx={{
 						marginBlockStart: "0.5em",

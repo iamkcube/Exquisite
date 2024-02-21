@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Lostar';
+    src: url('lostar-webfont.woff2') format('woff2'),
+         url('lostar-webfont.woff') format('woff'),
+         url('lostar-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

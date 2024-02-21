@@ -4,9 +4,9 @@ import Footer from "@landingpage/Footer";
 import InfoDivider from "@landingpage/InfoDivider";
 import MainContent from "@landingpage/MainContent";
 import Navbar from "@landingpage/Navbar";
-import SectionDivider from "@utils/SectionDivider";
 import WhereandWhen from "@landingpage/WhereandWhen";
 import { Box } from "@mui/material";
+import SectionDivider from "@utils/SectionDivider";
 
 export default function LandingPage() {
 	return (

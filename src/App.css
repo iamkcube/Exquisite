@@ -1,6 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+@import '@/assets/fonts/font.css';
+
 body
 {
 	scrollbar-gutter: stable;
+}
+
+#root
+{
+	overflow-x: hidden;
 }
 
 ::-webkit-scrollbar

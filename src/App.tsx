@@ -7,6 +7,7 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import ScrollToTop from "@utils/ScrollToTop";
+import OtherContextProvider from "@/contexts/OtherContext";
 
 const theme = createTheme({
 	palette: {
@@ -41,25 +42,27 @@ function App() {
 	return (
 		<AuthProvider>
 			<SnackbarProvider>
-				<ThemeProvider theme={theme}>
-					<BrowserRouter>
-						<ScrollToTop />
-						<Routes>
-							<Route
-								path="/*"
-								element={<LoginSignupPage />}
-							/>
-							<Route
-								path="/events"
-								element={<EventsPage />}
-							/>
-							<Route
-								path="/"
-								element={<LandingPage />}
-							/>
-						</Routes>
-					</BrowserRouter>
-				</ThemeProvider>
+				<OtherContextProvider>
+					<ThemeProvider theme={theme}>
+						<BrowserRouter>
+							<ScrollToTop />
+							<Routes>
+								<Route
+									path="/*"
+									element={<LoginSignupPage />}
+								/>
+								<Route
+									path="/events"
+									element={<EventsPage />}
+								/>
+								<Route
+									path="/"
+									element={<LandingPage />}
+								/>
+							</Routes>
+						</BrowserRouter>
+					</ThemeProvider>
+				</OtherContextProvider>
 			</SnackbarProvider>
 		</AuthProvider>
 	);

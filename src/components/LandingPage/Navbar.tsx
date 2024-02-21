@@ -1,19 +1,26 @@
-/** @jsxImportSource @emotion/react */
 import { useAuth } from "@/contexts/AuthContext";
-import { css } from "@emotion/react";
-import { Avatar, Typography } from "@mui/material";
+import { useOtherContext } from "@/contexts/OtherContext";
+import NavDrawer from "@landingpage/NavDrawer";
+import NavbarLinks from "@landingpage/NavbarLinks";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Avatar, IconButton } from "@mui/material";
 import RoundedButton from "@utils/RoundedButton";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
 	const navigate = useNavigate();
 	const { userLoggedIn, currentUser, userDoc } = useAuth();
+	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+	const { isBigDevice, isSmallDevice } = useOtherContext();
 
 	return (
 		<nav
 			style={{
 				position: "sticky",
 				top: 0,
+				right:0,
+				left:0,
 				display: "flex",
 				justifyContent: "space-between",
 				alignItems: "center",
@@ -30,64 +37,19 @@ export default function Navbar() {
 				src="/vite.svg"
 				alt="Logo"
 			/>
-			<ul
-				style={{
-					display: "flex",
-					gap: "1.5rem",
-					listStyle: "none",
-				}}
-			>
-				<Typography
-					css={linkStyle}
-					onClick={() =>
-						document.getElementById("AboutUs")?.scrollIntoView()
-					}
-				>
-					About
-				</Typography>
-				<Typography
-					css={linkStyle}
-					onClick={() =>
-						document
-							.getElementById("WhereandWhen")
-							?.scrollIntoView()
-					}
-				>
-					Where&When
-				</Typography>
-				<Typography
-					css={linkStyle}
-					onClick={() =>
-						document.getElementById("Community")?.scrollIntoView()
-					}
-				>
-					Community
-				</Typography>
-				<Link
-					to="./events"
-					css={linkStyle}
-				>
-					Events
-				</Link>
-				<Link
-					to="./login"
-					css={linkStyle}
-				>
-					Last Year
-				</Link>
-				<Link
-					to="./login"
-					css={linkStyle}
-				>
-					Pricing
-				</Link>
-			</ul>
+			<NavDrawer
+				isDrawerOpen={isDrawerOpen}
+				setIsDrawerOpen={setIsDrawerOpen}
+			/>
+
+			{isBigDevice && <NavbarLinks />}
 			<RoundedButton
 				text="Buy a Ticket"
 				onClick={() => {
 					navigate("./login");
 				}}
 			/>
+
 			{userLoggedIn && (
 				<Link to="./login">
 					<Avatar
@@ -99,16 +61,11 @@ export default function Navbar() {
 					></Avatar>
 				</Link>
 			)}
+			{isSmallDevice && (
+				<IconButton onClick={() => setIsDrawerOpen(true)}>
+					<MenuIcon />
+				</IconButton>
+			)}
 		</nav>
 	);
 }
-
-const linkStyle = css`
-	color: var(--text-color);
-	text-decoration: none;
-	text-transform: none;
-	cursor: pointer;
-	&:hover {
-		color: var(--accent-main-purple);
-	}
-`;

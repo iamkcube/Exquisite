@@ -19,30 +19,18 @@ export default function Footer() {
 				transform: "translateX(-40%)",
 			}}
 		>
-			<Typography color="var(--accent-blue)" fontSize="var(--mini-font-size)">Privacy Policy</Typography>
-			<Typography color="var(--accent-blue)" fontSize="var(--mini-font-size)">
+			<Typography
+				color="var(--accent-blue)"
+				fontSize="var(--mini-font-size)"
+			>
+				Privacy Policy
+			</Typography>
+			<Typography
+				color="var(--accent-blue)"
+				fontSize="var(--mini-font-size)"
+			>
 				Made with ❤️ by{" "}
-				<span
-					css={css`
-						position: relative;
-						&:before {
-							content: "";
-							display: inline-block;
-							position: absolute;
-							bottom: 0;
-							width: 100%;
-							height: 2px;
-							background-color: var(--accent-main-purple);
-							scale: 0% 100%;
-							transform-origin: right;
-							transition: scale 0.3s ease-in-out;
-						}
-						&:hover:before {
-							scale: 100% 100%;
-							transform-origin: left;
-						}
-					`}
-				>
+				<span css={mainLinkStyles}>
 					<a
 						target="_blank"
 						href="http://github.com/iamkcube"
@@ -53,16 +41,16 @@ export default function Footer() {
 				</span>
 			</Typography>
 			<Stack direction="row">
-				<IconButton color="secondary">
+				<IconButton color="primary">
 					<InstagramIcon />
 				</IconButton>
-				<IconButton color="secondary">
+				<IconButton color="primary">
 					<FacebookIcon />
 				</IconButton>
-				<IconButton color="secondary">
+				<IconButton color="primary">
 					<XIcon />
 				</IconButton>
-				<IconButton color="secondary">
+				<IconButton color="primary">
 					<YouTubeIcon />
 				</IconButton>
 			</Stack>
@@ -73,4 +61,24 @@ const linkStyle = css`
 	color: var(--accent-main-purple);
 	text-decoration: none;
 	text-transform: none;
+`;
+
+const mainLinkStyles = css`
+	position: relative;
+	&:before {
+		content: "";
+		display: inline-block;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		height: 2px;
+		background-color: var(--accent-main-purple);
+		scale: 0% 100%;
+		transform-origin: right;
+		transition: scale 0.3s ease-in-out;
+	}
+	&:hover:before {
+		scale: 100% 100%;
+		transform-origin: left;
+	}
 `;
