@@ -5,6 +5,7 @@ import {
 	signOut,
 	createUserWithEmailAndPassword,
 	signInWithPopup,
+	signInWithRedirect,
 } from "firebase/auth";
 
 export async function handleSignUp(
@@ -21,7 +22,18 @@ export async function handleSignUp(
 }
 
 export async function handleSignUpWithGoogle() {
-	const googleSignInDetails = await signInWithPopup(auth, googleProvider);
+	console.log(
+		/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+			navigator.userAgent
+		)
+	);
+
+	const googleSignInDetails =
+		/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+			navigator.userAgent
+		)
+			? await signInWithRedirect(auth, googleProvider)
+			: await signInWithPopup(auth, googleProvider);
 	const { displayName, email, photoURL } = googleSignInDetails.user;
 
 	if (googleSignInDetails?._tokenResponse?.isNewUser) {

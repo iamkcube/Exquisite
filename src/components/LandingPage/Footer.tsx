@@ -5,14 +5,18 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import XIcon from "@mui/icons-material/X";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import { useOtherContext } from "@/contexts/OtherContext";
 
 export default function Footer() {
+	const { isBigDevice } = useOtherContext();
+
 	return (
 		<Stack
-			direction="row"
+			direction={isBigDevice ? "row" : "column-reverse"}
 			justifyContent="space-between"
 			alignItems="center"
 			width="80vw"
+			gap={isBigDevice ? "auto" : "0.25rem"}
 			marginInlineStart="40%"
 			marginBlockEnd="1rem"
 			sx={{
@@ -40,7 +44,10 @@ export default function Footer() {
 					</a>
 				</span>
 			</Typography>
-			<Stack direction="row">
+			<Stack
+				direction="row"
+				marginBlockEnd={isBigDevice ? "auto" : "1rem"}
+			>
 				<IconButton color="primary">
 					<InstagramIcon />
 				</IconButton>

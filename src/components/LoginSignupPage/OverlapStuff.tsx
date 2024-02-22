@@ -7,6 +7,7 @@ export default function OverlapStuff() {
 			<Box
 				sx={{
 					width: "80vw",
+					marginInline: "auto",
 					height: "min(40vh,250px)",
 					backgroundColor: "var(--accent-white)",
 					opacity: 0.25,
@@ -17,6 +18,7 @@ export default function OverlapStuff() {
 			<Box
 				sx={{
 					width: "80vw",
+					marginInline: "auto",
 					height: "min(40vh,250px)",
 					backgroundColor: "var(--accent-blue)",
 					opacity: 0.25,
@@ -27,7 +29,7 @@ export default function OverlapStuff() {
 			<Box
 				sx={{
 					marginInline: "auto",
-					width: "40rem",
+					width: "clamp(25rem , 60vw , 40rem)",
 					mask: `url(${base64}) no-repeat center / contain`,
 					WebkitMask: `url(${base64}) no-repeat center / contain`,
 					gridArea: "top-start/ top-start / bottom-end / bottom-end",

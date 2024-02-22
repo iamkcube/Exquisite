@@ -1,3 +1,4 @@
+import { useOtherContext } from "@/contexts/OtherContext";
 import { Avatar, Box, Stack, TextField, Typography } from "@mui/material";
 import RoundedButton from "@utils/RoundedButton";
 import Starburst from "@utils/Starburst";
@@ -31,6 +32,8 @@ export default function SignupPage({
 	mutateSignOut,
 	isLoadingSignOut,
 }: SignupPageProps) {
+	const { isBigDevice } = useOtherContext();
+
 	const [avatarSrc, setAvatarSrc] = useState<string | ArrayBuffer | null>(
 		"https://source.unsplash.com/random/400x400/?profile,picture"
 	);
@@ -60,8 +63,8 @@ export default function SignupPage({
 	return (
 		<Box
 			sx={{
-				marginInline: "auto",
-				width: "40ch",
+				marginInline: isBigDevice ? "auto" : "2rem",
+				width: isBigDevice ? "40ch" : "auto",
 				display: "grid",
 				placeItems: "center",
 				gap: "1rem",

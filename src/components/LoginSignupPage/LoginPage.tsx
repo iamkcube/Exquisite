@@ -1,3 +1,4 @@
+import { useOtherContext } from "@/contexts/OtherContext";
 import { Box, Stack, Typography, TextField } from "@mui/material";
 import RoundedButton from "@utils/RoundedButton";
 import Starburst from "@utils/Starburst";
@@ -27,6 +28,8 @@ export default function LoginPage({
 	mutateSignOut,
 	isLoadingSignOut,
 }: LoginPageProps) {
+	const { isBigDevice } = useOtherContext();
+
 	const { state } = useLocation();
 	useEffect(() => {
 		emailRef.current!.value = state?.email || "";
@@ -36,8 +39,8 @@ export default function LoginPage({
 	return (
 		<Box
 			sx={{
-				marginInline: "auto",
-				width: "40ch",
+				marginInline: isBigDevice ? "auto" : "2rem",
+				width: isBigDevice ? "40ch" : "auto",
 				display: "grid",
 				placeItems: "center",
 				gap: "1rem",

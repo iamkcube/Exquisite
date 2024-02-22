@@ -1,12 +1,12 @@
 import { useAuth } from "@/contexts/AuthContext";
+import { useOtherContext } from "@/contexts/OtherContext";
 import { SnackbarContext } from "@/contexts/SnackbarContext";
-import
-	{
-		handleLogin,
-		handleSignOut,
-		handleSignUp,
-		handleSignUpWithGoogle,
-	} from "@api/authAPI";
+import {
+	handleLogin,
+	handleSignOut,
+	handleSignUp,
+	handleSignUpWithGoogle,
+} from "@api/authAPI";
 import LoginPage from "@components/LoginSignupPage/LoginPage";
 import OverlapStuff from "@components/LoginSignupPage/OverlapStuff";
 import SignupPage from "@components/LoginSignupPage/SignupPage";
@@ -18,6 +18,8 @@ import { useContext, useRef } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 export default function LoginSignupPage() {
+	const { isBigDevice } = useOtherContext();
+
 	const location = useLocation();
 	const navigate = useNavigate();
 	const { userLoggedIn } = useAuth();
@@ -75,6 +77,7 @@ export default function LoginSignupPage() {
 	} = useMutation({
 		mutationFn: () => handleSignUpWithGoogle(),
 		onSuccess: () => {
+			console.log("Sign In with Google successful!");
 			navigate("../");
 			openSnackbar("Sign In with Google successful!");
 		},
@@ -101,7 +104,9 @@ export default function LoginSignupPage() {
 
 			<Stack
 				justifyContent="space-between"
-				direction="row"
+				alignItems="center"
+				direction={isBigDevice ? "row" : "column"}
+				marginBlockEnd={isBigDevice ? 0 : "1rem"}
 			>
 				<Box marginBlockStart="1.5em">
 					<RoundedButton

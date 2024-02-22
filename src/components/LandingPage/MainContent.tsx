@@ -9,10 +9,11 @@ export default function MainContent() {
 
 	const fancyFontStyles: React.CSSProperties = {
 		fontFamily: "var(--fancy-font)",
-		fontSize: isBigDevice ? "9rem" : "4.5rem",
-		paddingInline: isBigDevice ? "0.7rem" : 0,
+		fontSize: "clamp(4.5rem, 20vw, 9rem)",
+		paddingInline: isBigDevice ? "0.7rem" : "0.3rem",
 		backgroundImage: `var(--noise-layer), 
 		var(--radial-gradient)`,
+		backgroundRepeat: "repeat",
 		backgroundSize: "200%",
 		backgroundPosition: "90% calc(50% + 50px)",
 		backgroundClip: "text",
@@ -24,8 +25,8 @@ export default function MainContent() {
 		<>
 			<Stack
 				direction="column"
-				spacing={isBigDevice ? -8 : -2}
-				marginBlockStart={isBigDevice ? 0 : "10em"}
+				spacing="clamp(-4rem, -5vw, -1rem)"
+				marginBlock={isBigDevice ? 0 : "10em 6em"}
 				position="relative"
 			>
 				{/* 1st --------------------------------------------------------------------------------- */}
@@ -73,7 +74,7 @@ export default function MainContent() {
 								position: "absolute",
 								top: "-7rem",
 								right: 0,
-								textAlign: "center",
+								textAlign: "right",
 							}),
 						}}
 					>
@@ -119,12 +120,11 @@ export default function MainContent() {
 						direction="column"
 						spacing={1}
 						sx={{
-							textAlign: isBigDevice ? "right" : "center",
+							textAlign: isBigDevice ? "right" : "left",
 							...(isSmallDevice && {
 								position: "absolute",
 								bottom: "-6rem",
 								left: 0,
-								textAlign: "center",
 							}),
 						}}
 					>
@@ -142,11 +142,11 @@ export default function MainContent() {
 					</Stack>
 					<Typography sx={fancyFontStyles}>Festival</Typography>
 					<StarburstLines
-						width="8rem"
+						width={isBigDevice ? "8rem" : "5rem"}
 						color="var(--accent-main-purple)"
 						style={{
 							position: "absolute",
-							bottom: "-5.5rem",
+							bottom: "-4.5rem",
 							right: "-1rem",
 						}}
 					/>
