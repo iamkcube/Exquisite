@@ -14,6 +14,24 @@ export default function NavbarLinks({
 	isDrawerOpen,
 	setIsDrawerOpen,
 }: NavbarLinksProps) {
+	const forDrawerLinkStyles = `
+	width: 100%;
+	background-color: color-mix(in srgb, var(--accent-white) 10%, transparent);
+	border-radius: 8px;
+	padding: 0.75rem;`;
+
+	const linkStyle = css`
+		color: var(--text-color);
+		text-decoration: none;
+		text-transform: none;
+		cursor: pointer;
+		white-space: nowrap;
+		${forDrawer && forDrawerLinkStyles}
+		&:hover {
+			color: var(--accent-main-purple);
+		}
+	`;
+
 	return (
 		<List
 			sx={{
@@ -21,6 +39,10 @@ export default function NavbarLinks({
 				flexDirection: forDrawer ? "column" : "row",
 				listStyle: "none",
 				width: forDrawer ? 250 : "auto",
+				padding: forDrawer ? "0.5rem" : "auto",
+				...(forDrawer && {
+					marginBlockStart: "4rem",
+				}),
 			}}
 			onClick={() => setIsDrawerOpen && setIsDrawerOpen(!isDrawerOpen)}
 			// onKeyDown={() => setIsDrawerOpen && setIsDrawerOpen(!isDrawerOpen)}
@@ -87,14 +109,3 @@ export default function NavbarLinks({
 		</List>
 	);
 }
-
-const linkStyle = css`
-	color: var(--text-color);
-	text-decoration: none;
-	text-transform: none;
-	cursor: pointer;
-	white-space: nowrap;
-	&:hover {
-		color: var(--accent-main-purple);
-	}
-`;

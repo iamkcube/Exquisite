@@ -47,6 +47,7 @@ export default function Footer() {
 			<Stack
 				direction="row"
 				marginBlockEnd={isBigDevice ? "auto" : "1rem"}
+				gap="0.25rem"
 			>
 				<IconButton color="primary">
 					<InstagramIcon />
