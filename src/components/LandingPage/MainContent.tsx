@@ -65,7 +65,7 @@ export default function MainContent() {
 							10th-12th <br /> March '24
 						</Typography>
 					</Box>
-					<Typography sx={fancyFontStyles}>Excuisite</Typography>
+					<Typography sx={fancyFontStyles}>Exquisite</Typography>
 					<Stack
 						direction="column"
 						spacing={1}
