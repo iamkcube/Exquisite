@@ -6,6 +6,8 @@ import {
 	createUserWithEmailAndPassword,
 	signInWithPopup,
 	signInWithRedirect,
+	getRedirectResult,
+	UserCredential,
 } from "firebase/auth";
 
 export async function handleSignUp(
@@ -22,21 +24,32 @@ export async function handleSignUp(
 }
 
 export async function handleSignUpWithGoogle() {
-	console.log(
-		/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-			navigator.userAgent
-		)
-	);
+	const googleSignInDetails = await signInWithPopup(auth, googleProvider);
+	handleCreateUserAfterSignUp(googleSignInDetails);
+}
 
-	const googleSignInDetails =
-		/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-			navigator.userAgent
-		)
-			? await signInWithRedirect(auth, googleProvider)
-			: await signInWithPopup(auth, googleProvider);
+export async function handleSignUpWithGoogleRedirect() {
+	await signInWithRedirect(auth, googleProvider);
+}
+
+export async function ifRedirectMakeUser() {
+	const googleSignInDetails = await getRedirectResult(auth);
+	console.log(
+		"🚀 ~ ifRedirectMakeUser ~ googleSignInDetails:",
+		googleSignInDetails
+	);
+	if (googleSignInDetails == null) return false;
+
+	handleCreateUserAfterSignUp(googleSignInDetails);
+	return true;
+}
+
+async function handleCreateUserAfterSignUp(
+	googleSignInDetails: UserCredential
+) {
 	const { displayName, email, photoURL } = googleSignInDetails.user;
 
-	if (googleSignInDetails?._tokenResponse?.isNewUser) {
+	if ((googleSignInDetails as any)?._tokenResponse?.isNewUser) {
 		if (displayName && email) {
 			await handleCreateUserInDB(
 				displayName,

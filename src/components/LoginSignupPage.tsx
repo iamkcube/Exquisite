@@ -6,6 +6,8 @@ import {
 	handleSignOut,
 	handleSignUp,
 	handleSignUpWithGoogle,
+	handleSignUpWithGoogleRedirect,
+	ifRedirectMakeUser,
 } from "@api/authAPI";
 import LoginPage from "@components/LoginSignupPage/LoginPage";
 import OverlapStuff from "@components/LoginSignupPage/OverlapStuff";
@@ -14,7 +16,7 @@ import StarburstDesignStuff from "@components/LoginSignupPage/StarburstDesignStu
 import { Box, Button, Stack } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import RoundedButton from "@utils/RoundedButton";
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 export default function LoginSignupPage() {
@@ -75,13 +77,30 @@ export default function LoginSignupPage() {
 		mutate: mutateSignUpWithGoogle,
 		isPending: isLoadingSignUpWithGoogle,
 	} = useMutation({
-		mutationFn: () => handleSignUpWithGoogle(),
+		mutationFn: () => {
+			return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+				navigator.userAgent
+			)
+				? handleSignUpWithGoogleRedirect()
+				: handleSignUpWithGoogle();
+		},
 		onSuccess: () => {
-			console.log("Sign In with Google successful!");
 			navigate("../");
 			openSnackbar("Sign In with Google successful!");
 		},
 	});
+
+	useEffect(() => {
+		const justRun = async () => {
+			const isRedirected = await ifRedirectMakeUser();
+			console.log("🚀 ~ justRun ~ isRedirected:", isRedirected);
+			if (isRedirected) {
+				navigate("../");
+				openSnackbar("Sign In with Google successful! Yayy");
+			}
+		};
+		justRun();
+	}, []);
 
 	const { mutate: mutateSignOut, isPending: isLoadingSignOut } = useMutation({
 		mutationFn: () => handleSignOut(),
