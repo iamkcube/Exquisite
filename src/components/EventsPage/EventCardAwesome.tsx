@@ -1,16 +1,16 @@
 import { useAuth } from "@/contexts/AuthContext";
+import { useOtherContext } from "@/contexts/OtherContext";
 import { SnackbarContext } from "@/contexts/SnackbarContext";
 import { handleAddRemoveUserEvent } from "@api/dbAPI";
-import
-	{
-		Box,
-		Card,
-		CardContent,
-		Stack,
-		SxProps,
-		Theme,
-		Typography,
-	} from "@mui/material";
+import {
+	Box,
+	Card,
+	CardContent,
+	Stack,
+	SxProps,
+	Theme,
+	Typography,
+} from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import RoundedButton from "@utils/RoundedButton";
 import Starburst from "@utils/Starburst";
@@ -35,6 +35,8 @@ export default function EventCardAwesome({
 	date,
 	description,
 }: EventCardAwesomeProps) {
+	const { isBigDevice, isSmallDevice } = useOtherContext();
+
 	const queryClient = useQueryClient();
 	const { userDoc } = useAuth();
 	const { openSnackbar } = useContext(SnackbarContext);
@@ -77,11 +79,11 @@ export default function EventCardAwesome({
 			elevation={0}
 			sx={cardStyles(dark)}
 		>
-			<Stack
+			<Box
 				sx={{
 					position: "relative",
 					display: "grid",
-					gridTemplateColumns: "auto auto 1fr",
+					gridTemplateColumns: isBigDevice ? "auto 1fr" : "1fr",
 					padding: "3em 3em 1em 3em",
 					columnGap: "2.5rem",
 					zIndex: 100,
@@ -91,6 +93,12 @@ export default function EventCardAwesome({
 					sx={{
 						display: "grid",
 						gridTemplateAreas: "centre",
+						...(isSmallDevice && {
+							position: "absolute",
+							top: "-3rem",
+							right: "-3rem",
+							zIndex: -1,
+						}),
 					}}
 				>
 					<StarburstOutline
@@ -107,27 +115,62 @@ export default function EventCardAwesome({
 				<Stack
 					justifyContent="space-between"
 					alignItems="flex-start"
+					width={isBigDevice ? "auto" : "100%"}
 					spacing={4}
 				>
-					<Box>
+					<Stack spacing={2}>
 						<Typography
 							fontFamily="var(--fancy-font)"
 							fontSize="2rem"
+							lineHeight={1.1}
 						>
 							{eventName}
 						</Typography>
-						<Stack
-							direction="row"
-							spacing={1.5}
+						<Box
+							sx={{
+								display: "grid",
+								gridTemplateColumns: isBigDevice
+									? "auto auto 1fr"
+									: "auto 1fr",
+								gridTemplateRows: isBigDevice
+									? "auto"
+									: "1fr 1fr",
+								gridTemplateAreas: isBigDevice
+									? `"date star location"`
+									: `"star date"
+									   "star location"`,
+								alignItems: "center",
+								columnGap: 2,
+							}}
+							// direction={isBigDevice ? "row" : "column"}
+							// spacing={isBigDevice ? 1.5 : 0}
 						>
-							<Typography>{date}</Typography>
+							<Typography
+								fontSize="clamp(0.85rem, 2vw, 1rem)"
+								sx={{
+									gridArea: "date",
+								}}
+							>
+								{date}
+							</Typography>
 							<Starburst
 								color="var(--accent-light-green)"
 								width="1rem"
+								style={{
+									gridArea: "star",
+								}}
 							/>
-							<Typography>{location}</Typography>
-						</Stack>
-					</Box>
+							<Typography
+								fontSize="clamp(0.85rem, 2vw, 1rem)"
+								fontWeight={isBigDevice ? "normal" : "bold"}
+								sx={{
+									gridArea: "location",
+								}}
+							>
+								{location}
+							</Typography>
+						</Box>
+					</Stack>
 					<RoundedButton
 						text={
 							(userDoc?.userEvents ?? []).includes(eventId)
@@ -152,7 +195,7 @@ export default function EventCardAwesome({
 						}}
 					/>
 				</Stack>
-			</Stack>
+			</Box>
 			<CardContent
 				sx={{
 					position: "relative",

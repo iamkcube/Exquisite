@@ -1,4 +1,5 @@
 import { useAuth } from "@/contexts/AuthContext";
+import { useOtherContext } from "@/contexts/OtherContext";
 import { handleGetAllEvents } from "@api/dbAPI";
 import EventCardAwesome from "@components/EventsPage/EventCardAwesome";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -8,6 +9,8 @@ import SectionDivider from "@utils/SectionDivider";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function EventsPage() {
+	const { isBigDevice } = useOtherContext();
+
 	const navigate = useNavigate();
 	const { userLoggedIn, userDoc, currentUser } = useAuth();
 
@@ -20,10 +23,24 @@ export default function EventsPage() {
 		queryKey: ["eventsList"],
 	});
 
+	const fancyFontStyles = {
+		fontFamily: "var(--fancy-font)",
+		fontSize: "clamp(2rem, 2vw, 4rem)",
+		paddingInline: isBigDevice ? "0.25rem" : "0.2rem",
+		backgroundImage: `var(--noise-layer), 
+						  var(--radial-gradient)`,
+		backgroundSize: "125%",
+		backgroundPosition: "90% calc(50% + 50px)",
+		backgroundClip: "text",
+		color: "transparent",
+	};
+
 	return (
 		<Box
-			width="min(100% - 4rem, 1400px)"
-			marginInline="auto"
+			width={
+				isBigDevice ? "min(100% - 4rem, 1400px)" : "calc(100% - 2rem)"
+			}
+			marginInline={isBigDevice ? "auto" : "auto"}
 			marginBlock="4rem"
 		>
 			<Box
@@ -67,21 +84,18 @@ export default function EventsPage() {
 					</Link>
 				)}
 			</Box>
-			<SectionDivider height={40} />
+			<SectionDivider height={isBigDevice ? 40 : 10} />
 			<Box
 				sx={{
 					display: "grid",
-					gridTemplateColumns: "repeat(auto-fit, minmax( 600px, 1fr ))",
-					// placeContent: "center",
+					gridTemplateColumns: isBigDevice
+						? "repeat(auto-fit, minmax( 600px, 1fr ))"
+						: "1fr",
 					gap: "1rem",
-					// justifyContent: "center",
-					// alignItems: "stretch",
 					marginBlockStart: "1.69rem",
 					"& > *": {
 						display: "flex",
 						flexDirection: "column",
-						// justifyContent: "space-between",
-						// minHeight: "100%",
 					},
 				}}
 			>
@@ -91,8 +105,9 @@ export default function EventsPage() {
 						return (
 							<EventCardAwesome
 								// dark={!!(index % 2)}
-								dark={(
-									userDoc?.userEvents ?? []).includes(event.id)}
+								dark={(userDoc?.userEvents ?? []).includes(
+									event.id
+								)}
 								key={index}
 								eventId={event.id}
 								eventName={event.eventName}
@@ -112,15 +127,3 @@ export default function EventsPage() {
 		</Box>
 	);
 }
-
-const fancyFontStyles = {
-	fontFamily: "var(--fancy-font)",
-	fontSize: "4rem",
-	paddingInline: "0.25rem",
-	backgroundImage: `var(--noise-layer), 
-	var(--radial-gradient)`,
-	backgroundSize: "125%",
-	backgroundPosition: "90% calc(50% + 50px)",
-	backgroundClip: "text",
-	color: "transparent",
-};

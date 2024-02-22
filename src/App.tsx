@@ -41,8 +41,8 @@ const theme = createTheme({
 function App() {
 	return (
 		<AuthProvider>
-			<SnackbarProvider>
-				<OtherContextProvider>
+			<OtherContextProvider>
+				<SnackbarProvider>
 					<ThemeProvider theme={theme}>
 						<BrowserRouter>
 							<ScrollToTop />
@@ -62,8 +62,8 @@ function App() {
 							</Routes>
 						</BrowserRouter>
 					</ThemeProvider>
-				</OtherContextProvider>
-			</SnackbarProvider>
+				</SnackbarProvider>
+			</OtherContextProvider>
 		</AuthProvider>
 	);
 }

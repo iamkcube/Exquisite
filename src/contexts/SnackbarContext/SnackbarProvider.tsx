@@ -1,3 +1,4 @@
+import { useOtherContext } from "@/contexts/OtherContext";
 import { SnackbarContext } from "@/contexts/SnackbarContext";
 import { Grow, GrowProps } from "@mui/material";
 import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
@@ -12,9 +13,11 @@ export default function SnackbarProvider({
 }: {
 	children: ReactNode;
 }) {
+	const { isBigDevice } = useOtherContext();
+	// const isBigDevice = false;
 	const [state, setState] = useState<State>({
 		open: false,
-		vertical: "top",
+		vertical: isBigDevice ? "top" : "bottom",
 		horizontal: "center",
 	});
 	const { vertical, horizontal, open } = state;
@@ -22,7 +25,7 @@ export default function SnackbarProvider({
 
 	function openSnackbar(
 		newMessage: string,
-		vertical: "top" | "bottom" = "top",
+		vertical: "top" | "bottom" = isBigDevice ? "top" : "bottom",
 		horizontal: "left" | "right" | "center" = "center"
 	) {
 		setMessage(newMessage);

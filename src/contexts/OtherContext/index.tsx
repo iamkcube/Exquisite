@@ -11,7 +11,7 @@ const OtherContext = createContext<OtherContextProps | undefined>(undefined);
 export function useOtherContext() {
 	const context = useContext(OtherContext);
 	if (!context) {
-		throw new Error("useAuth must be used within an AuthProvider");
+		throw new Error("useOtherContext must be used within an OtherContextProvider");
 	}
 	return context;
 }
