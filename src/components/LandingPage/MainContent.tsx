@@ -144,11 +144,15 @@ export default function MainContent() {
 					<StarburstLines
 						width={isBigDevice ? "8rem" : "5rem"}
 						color="var(--accent-main-purple)"
-						style={{
-							position: "absolute",
-							bottom: "-4.5rem",
-							right: "-1rem",
-						}}
+						style={
+							isSmallDevice
+								? {
+										position: "absolute",
+										bottom: "-4.5rem",
+										right: "-1rem",
+								  }
+								: {}
+						}
 					/>
 				</Stack>
 			</Stack>
