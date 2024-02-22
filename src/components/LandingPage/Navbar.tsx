@@ -31,10 +31,17 @@ export default function Navbar() {
 				clipPath: "inset(0 -100vmax)",
 			}}
 		>
-			<img
-				src="/vite.svg"
-				alt="Logo"
-			/>
+			<IconButton
+				// disableRipple
+				sx={{ padding: 0 }}
+				onClick={() => window.scrollTo(0, 0)}
+			>
+				<img
+					src="/logo.svg"
+					alt="Logo"
+					width={isBigDevice ? "48px" : "40px"}
+				/>
+			</IconButton>
 			<NavDrawer
 				isDrawerOpen={isDrawerOpen}
 				setIsDrawerOpen={setIsDrawerOpen}
