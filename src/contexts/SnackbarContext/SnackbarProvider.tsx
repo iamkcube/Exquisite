@@ -51,7 +51,7 @@ export default function SnackbarProvider({
 				anchorOrigin={{ vertical, horizontal }}
 				open={open}
 				onClose={handleClose}
-				autoHideDuration={3000}
+				autoHideDuration={5000}
 				TransitionComponent={GrowTransition}
 				message={message}
 				key={new Date().getTime()}

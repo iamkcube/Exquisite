@@ -24,8 +24,16 @@ export async function handleSignUp(
 }
 
 export async function handleSignUpWithGoogle() {
-	const googleSignInDetails = await signInWithPopup(auth, googleProvider);
-	handleCreateUserAfterSignUp(googleSignInDetails);
+	try {
+		const googleSignInDetails = await signInWithPopup(auth, googleProvider);
+		console.log(
+			"🚀 ~ handleSignUpWithGoogle ~ googleSignInDetails:",
+			googleSignInDetails
+		);
+		handleCreateUserAfterSignUp(googleSignInDetails);
+	} catch (error) {
+		throw error;
+	}
 }
 
 export async function handleSignUpWithGoogleRedirect() {

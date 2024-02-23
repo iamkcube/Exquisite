@@ -105,7 +105,15 @@ export default function LoginSignupPage() {
 		},
 		onSuccess: () => {
 			navigate("../");
-			openSnackbar("Sign In with Google successful!");
+		},
+		onError(error) {
+			if (
+				error.message ==
+				"Firebase: IdP denied access. This usually happens when user refuses to grant permission. (auth/user-cancelled)."
+			) {
+				openSnackbar("Please grant the permissions first.");
+			}
+			console.log(error.message);
 		},
 	});
 
