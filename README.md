@@ -1,30 +1,40 @@
-# React + TypeScript + Vite
+# Exquisite - The Music Festival 🎶
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the official repository of the Exquisite Music Festival. This website is your go-to source for all things related to the festival, including line-ups, schedules, ticket information, and more.
 
-Currently, two official plugins are available:
+## About the Festival
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Exquisite Music Festival is a celebration of music from around the world. We bring together artists from various genres to perform at our annual event. (Add more details about the festival here)
 
-## Expanding the ESLint configuration
+## Features of the Website
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Events**: Get to know the artists who will be performing at the festival.
+- **Schedule**: Plan your festival experience with our detailed schedule.
+- **Tickets**: Purchase tickets directly from our website.
+- **Community**: Engage with other music lovers and share your experiences. 
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+To get started with the project, clone the repository and install the necessary dependencies.
+
+```bash
+git clone https://github.com/iamkcube/Exquisite.git
+cd Exquisite
+pnpm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Running the Website Locally
+You can start the development server with:
+
+```bash
+pnpm run dev
+```
+
+## Contributing
+We welcome contributions to the Exquisite Music Festival website! Please see our Contributing Guide for more details.
+
+## License
+This project is licensed under the [MIT License](https://mit-license.org/).
+
+## Contact
+If you have any questions, feel free to reach out to me at kalingakhatua@gmail.com
