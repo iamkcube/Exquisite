@@ -54,6 +54,7 @@ export default function LastYear() {
 									objectFit: "cover",
 								}}
 								alt=""
+								loading="lazy"
 							/>
 						))}
 					</Stack>
