@@ -83,7 +83,7 @@ export default function SignupPage({
 					fontSize="2rem"
 					paddingInlineEnd={1}
 				>
-					SignUp
+					Sign Up
 				</Typography>
 				{[...Array(3)].map((_, index) => (
 					<Starburst

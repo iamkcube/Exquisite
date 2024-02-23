@@ -49,7 +49,7 @@ export default function Navbar() {
 
 			{isBigDevice && <NavbarLinks />}
 			<RoundedButton
-				text="Buy a Ticket"
+				text="Log in/Sign up"
 				onClick={() => {
 					navigate("./login");
 				}}

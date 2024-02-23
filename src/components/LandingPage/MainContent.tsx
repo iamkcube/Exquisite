@@ -9,7 +9,7 @@ export default function MainContent() {
 
 	const fancyFontStyles: React.CSSProperties = {
 		fontFamily: "var(--fancy-font)",
-		fontSize: "clamp(4.5rem, 20vw, 9rem)",
+		fontSize: "clamp(4rem, 10vw + 2rem, 9rem)",
 		paddingInline: isBigDevice ? "0.7rem" : "0.3rem",
 		backgroundImage: `var(--noise-layer), 
 		var(--radial-gradient)`,

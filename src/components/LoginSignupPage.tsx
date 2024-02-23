@@ -177,7 +177,7 @@ export default function LoginSignupPage() {
 						>
 							{location.pathname === "/login"
 								? "Sign Up Here"
-								: "Login Here"}
+								: "Log In Here"}
 						</Button>
 					</Box>
 				}

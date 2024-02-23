@@ -59,7 +59,7 @@ export default function LoginPage({
 					fontSize="2rem"
 					paddingInlineEnd={1}
 				>
-					Login
+					Log In
 				</Typography>
 				{[...Array(3)].map((_, index) => (
 					<Starburst
@@ -102,7 +102,7 @@ export default function LoginPage({
 			>
 				<RoundedButton
 					type="submit"
-					text="Login"
+					text="Log In"
 					// contained
 					color="secondary"
 					onClick={(e) => {

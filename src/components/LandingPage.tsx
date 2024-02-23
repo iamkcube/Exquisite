@@ -1,5 +1,6 @@
 import AboutUs from "@landingpage/AboutUs";
 import Community from "@landingpage/Community";
+import LastYear from "@landingpage/LastYear";
 import Footer from "@landingpage/Footer";
 import InfoDivider from "@landingpage/InfoDivider";
 import MainContent from "@landingpage/MainContent";
@@ -24,6 +25,8 @@ export default function LandingPage() {
 			<InfoDivider />
 			<SectionDivider />
 			<WhereandWhen />
+			<SectionDivider />
+			<LastYear />
 			<SectionDivider />
 			<Community />
 			<SectionDivider />

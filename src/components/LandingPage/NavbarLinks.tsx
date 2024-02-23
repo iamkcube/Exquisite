@@ -73,6 +73,14 @@ export default function NavbarLinks({
 			</ListItem>
 			<ListItem>
 				<Link
+					to="./events"
+					css={linkStyle}
+				>
+					Events
+				</Link>
+			</ListItem>
+			<ListItem>
+				<Link
 					to="#Community"
 					css={linkStyle}
 					onClick={() =>
@@ -84,16 +92,11 @@ export default function NavbarLinks({
 			</ListItem>
 			<ListItem>
 				<Link
-					to="./events"
+					to="#LastYear"
 					css={linkStyle}
-				>
-					Events
-				</Link>
-			</ListItem>
-			<ListItem>
-				<Link
-					to="./login"
-					css={linkStyle}
+					onClick={() =>
+						document.getElementById("LastYear")?.scrollIntoView()
+					}
 				>
 					Last Year
 				</Link>

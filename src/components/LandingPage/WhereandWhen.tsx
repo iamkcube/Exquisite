@@ -50,12 +50,12 @@ export default function WhereandWhen() {
 						Aug 3-6, 2023
 					</Typography>
 					<RoundedButton
-						text="Buy a Ticket"
+						text="Register Now!"
 						sx={{
 							alignSelf: "start",
 						}}
 						onClick={() => {
-							navigate("./login");
+							navigate("./events");
 						}}
 					/>
 				</Stack>
