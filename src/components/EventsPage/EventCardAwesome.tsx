@@ -69,6 +69,9 @@ export default function EventCardAwesome({
 				openSnackbar(`Sign In first!`);
 			}
 		},
+		onError(error) {
+			console.error(error);
+		},
 	});
 	useEffect(() => {
 		setLoadingTillUserDocFetches(false);

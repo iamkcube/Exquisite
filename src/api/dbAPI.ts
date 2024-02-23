@@ -65,10 +65,16 @@ export async function handleAddRemoveUserEvent(
 	email: string,
 	userEventId: string
 ) {
-	await updateDoc(doc(db, "users", email), {
-		updatedAt: serverTimestamp(),
-		userEvents: remove ? arrayRemove(userEventId) : arrayUnion(userEventId),
-	});
+	try {
+		await updateDoc(doc(db, "users", email), {
+			updatedAt: serverTimestamp(),
+			userEvents: remove
+				? arrayRemove(userEventId)
+				: arrayUnion(userEventId),
+		});
+	} catch (error) {
+		throw error;
+	}
 }
 
 export async function handleGetAllEvents() {

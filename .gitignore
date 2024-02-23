@@ -27,3 +27,4 @@ dist-ssr
 
 # Mine Custom
 src/assets/Other Assets/
+public/static*

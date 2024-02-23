@@ -1,5 +1,5 @@
 import { useOtherContext } from "@/contexts/OtherContext";
-import { Avatar, Box, Stack, TextField, Typography } from "@mui/material";
+import { Avatar, Box, FormControl, Stack, TextField, Typography } from "@mui/material";
 import RoundedButton from "@utils/RoundedButton";
 import Starburst from "@utils/Starburst";
 import { useEffect, useState } from "react";
@@ -61,7 +61,7 @@ export default function SignupPage({
 	}, []);
 
 	return (
-		<Box
+		<FormControl
 			sx={{
 				marginInline: isBigDevice ? "auto" : "2rem",
 				width: isBigDevice ? "40ch" : "auto",
@@ -141,7 +141,6 @@ export default function SignupPage({
 				inputRef={photoRef}
 				onChange={handleFileChange}
 				fullWidth
-				required
 				InputProps={{
 					startAdornment: (
 						<Avatar
@@ -184,6 +183,6 @@ export default function SignupPage({
 					/>
 				)}
 			</Stack>
-		</Box>
+		</FormControl>
 	);
 }
