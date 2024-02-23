@@ -25,7 +25,7 @@ export default function EventsPage() {
 
 	const fancyFontStyles = {
 		fontFamily: "var(--fancy-font)",
-		fontSize: "clamp(2.5rem, 2vw, 4rem)",
+		fontSize: "clamp(2.5rem, 3vw + 1rem, 4rem)",
 		paddingInline: isBigDevice ? "0.25rem" : "0.2rem",
 		backgroundImage: `var(--noise-layer), 
 						  var(--radial-gradient)`,
