@@ -2,6 +2,7 @@ import { LoadingButton } from "@mui/lab";
 
 type RoundedButtonProps = {
 	text: string;
+	type?: "reset" | "button" | "submit" | undefined;
 	isLoading?: boolean;
 	borderWidth?: number;
 	color?:
@@ -15,11 +16,12 @@ type RoundedButtonProps = {
 		| undefined;
 	contained?: boolean;
 	sx?: React.CSSProperties;
-	onClick: () => void;
+	onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 export default function RoundedButton({
 	text,
+	type,
 	isLoading,
 	borderWidth = 2,
 	color = "primary",
@@ -29,6 +31,7 @@ export default function RoundedButton({
 }: RoundedButtonProps) {
 	return (
 		<LoadingButton
+			type={type}
 			disableElevation
 			loading={isLoading}
 			color={color}

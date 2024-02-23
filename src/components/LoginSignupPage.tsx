@@ -1,3 +1,4 @@
+import validateEmail from "@/assets/validateEmail";
 import { useAuth } from "@/contexts/AuthContext";
 import { useOtherContext } from "@/contexts/OtherContext";
 import { SnackbarContext } from "@/contexts/SnackbarContext";
@@ -33,11 +34,18 @@ export default function LoginSignupPage() {
 	const photoRef = useRef<HTMLInputElement>(null);
 
 	const { mutate: mutateLogin, isPending: isLoadingLogin } = useMutation({
-		mutationFn: () =>
-			handleLogin(
-				emailRef?.current?.value || "",
-				passwordRef?.current?.value || ""
-			),
+		mutationFn: () => {
+			const email = emailRef?.current?.value;
+			const password = passwordRef?.current?.value;
+
+			if (!email || !password) {
+				return Promise.reject(new Error("All fields are required."));
+			} else if (!validateEmail(email)) {
+				return Promise.reject(new Error("Invalid Email Id."));
+			} else {
+				return handleLogin(email, password);
+			}
+		},
 		onSuccess: () => {
 			navigate("../");
 			openSnackbar("Login successful!");
@@ -47,18 +55,29 @@ export default function LoginSignupPage() {
 				error.message === "Firebase: Error (auth/invalid-credential)."
 			) {
 				openSnackbar("Invalid Email or Password.");
-			}
+			} else openSnackbar(error.toString());
 		},
 	});
 
 	const { mutate: mutateSignUp, isPending: isLoadingSignUp } = useMutation({
-		mutationFn: () =>
-			handleSignUp(
-				nameRef?.current?.value || "",
-				emailRef?.current?.value || "",
-				passwordRef?.current?.value || "",
-				photoRef?.current?.files?.[0]
-			),
+		mutationFn: () => {
+			const name = nameRef?.current?.value;
+			const email = emailRef?.current?.value;
+			const password = passwordRef?.current?.value;
+
+			if (!name || !email || !password) {
+				return Promise.reject(new Error("All fields are required."));
+			} else if (!validateEmail(email)) {
+				return Promise.reject(new Error("Invalid Email Id."));
+			} else {
+				return handleSignUp(
+					name,
+					email,
+					password,
+					photoRef?.current?.files?.[0]
+				);
+			}
+		},
 		onSuccess: () => {
 			navigate("../");
 			openSnackbar("Sign Up successful!");
@@ -68,7 +87,7 @@ export default function LoginSignupPage() {
 				error.message === "Firebase: Error (auth/email-already-in-use)."
 			) {
 				openSnackbar("Already Signed Up. Try logging in.");
-			}
+			} else openSnackbar(error.toString());
 			console.log(error);
 		},
 	});

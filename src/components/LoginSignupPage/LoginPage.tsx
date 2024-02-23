@@ -1,5 +1,5 @@
 import { useOtherContext } from "@/contexts/OtherContext";
-import { Box, Stack, Typography, TextField } from "@mui/material";
+import { Stack, TextField, Typography } from "@mui/material";
 import RoundedButton from "@utils/RoundedButton";
 import Starburst from "@utils/Starburst";
 import { useEffect } from "react";
@@ -37,8 +37,8 @@ export default function LoginPage({
 	}, []);
 
 	return (
-		<Box
-			sx={{
+		<form
+			style={{
 				marginInline: isBigDevice ? "auto" : "2rem",
 				width: isBigDevice ? "40ch" : "auto",
 				display: "grid",
@@ -101,10 +101,14 @@ export default function LoginPage({
 				spacing={1}
 			>
 				<RoundedButton
+					type="submit"
 					text="Login"
 					// contained
 					color="secondary"
-					onClick={mutateLogin}
+					onClick={(e) => {
+						e.preventDefault();
+						mutateLogin();
+					}}
 					isLoading={isLoadingLogin}
 				/>
 				<RoundedButton
@@ -124,6 +128,6 @@ export default function LoginPage({
 					/>
 				)}
 			</Stack>
-		</Box>
+		</form>
 	);
 }

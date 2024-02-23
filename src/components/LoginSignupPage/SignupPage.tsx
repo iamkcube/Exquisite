@@ -1,5 +1,5 @@
 import { useOtherContext } from "@/contexts/OtherContext";
-import { Avatar, Box, FormControl, Stack, TextField, Typography } from "@mui/material";
+import { Avatar, Stack, TextField, Typography } from "@mui/material";
 import RoundedButton from "@utils/RoundedButton";
 import Starburst from "@utils/Starburst";
 import { useEffect, useState } from "react";
@@ -61,8 +61,8 @@ export default function SignupPage({
 	}, []);
 
 	return (
-		<FormControl
-			sx={{
+		<form
+			style={{
 				marginInline: isBigDevice ? "auto" : "2rem",
 				width: isBigDevice ? "40ch" : "auto",
 				display: "grid",
@@ -160,10 +160,14 @@ export default function SignupPage({
 				spacing={1}
 			>
 				<RoundedButton
+					type="submit"
 					text="Sign Up"
 					// contained
 					color="secondary"
-					onClick={mutateSignUp}
+					onClick={(e) => {
+						e.preventDefault();
+						mutateSignUp();
+					}}
 					isLoading={isLoadingSignUp}
 				/>
 				<RoundedButton
@@ -183,6 +187,6 @@ export default function SignupPage({
 					/>
 				)}
 			</Stack>
-		</FormControl>
+		</form>
 	);
 }
