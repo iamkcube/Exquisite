@@ -115,7 +115,7 @@ export default function LoginSignupPage() {
 			console.log("🚀 ~ justRun ~ isRedirected:", isRedirected);
 			if (isRedirected) {
 				navigate("../");
-				openSnackbar("Sign In with Google successful! Yayy");
+				openSnackbar("Sign In with Google successful!");
 			}
 		};
 		justRun();

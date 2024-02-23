@@ -66,7 +66,7 @@ export default function EventCardAwesome({
 					} for ${eventName}`
 				);
 			} else {
-				openSnackbar(`Sign In first!`);
+				openSnackbar(`Log In first!`);
 			}
 		},
 		onError(error) {
