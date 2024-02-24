@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import ScrollToTop from "@utils/ScrollToTop";
 import OtherContextProvider from "@/contexts/OtherContext";
+import AnimatedCircle from "@utils/AnimatedCircle";
 
 const theme = createTheme({
 	palette: {
@@ -60,6 +61,7 @@ function App() {
 									element={<LandingPage />}
 								/>
 							</Routes>
+							<AnimatedCircle />
 						</BrowserRouter>
 					</ThemeProvider>
 				</SnackbarProvider>
