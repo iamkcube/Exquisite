@@ -4,7 +4,7 @@ Welcome to the official repository of the Exquisite Music Festival. This website
 
 ## About the Festival
 
-Exquisite Music Festival is a celebration of music from around the world. We bring together artists from various genres to perform at our annual event. (Add more details about the festival here)
+Exquisite Music Festival is a celebration of music from around the world. We bring together artists from various genres to perform at our annual event.
 
 ## Features of the Website
 
