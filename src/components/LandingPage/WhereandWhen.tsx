@@ -47,7 +47,7 @@ export default function WhereandWhen() {
 						fontSize="1.25rem"
 						marginBlockEnd="2rem !important"
 					>
-						Aug 3-6, 2023
+						Mar 10-12, 2024
 					</Typography>
 					<RoundedButton
 						text="Register Now!"
