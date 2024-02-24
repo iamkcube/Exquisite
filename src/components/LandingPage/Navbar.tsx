@@ -49,9 +49,9 @@ export default function Navbar() {
 
 			{isBigDevice && <NavbarLinks />}
 			<RoundedButton
-				text="Log In/Sign Up"
+				text={userLoggedIn ? "Register" : "Log In/Sign Up"}
 				onClick={() => {
-					navigate("./login");
+					navigate(userLoggedIn ? "./events" : "./login");
 				}}
 			/>
 
