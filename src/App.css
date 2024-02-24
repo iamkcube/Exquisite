@@ -13,27 +13,31 @@ body
 	border-radius: 100vh;
 }
 
-:is(:not(body)):hover::-webkit-scrollbar-thumb
+:is(:not(body))::-webkit-scrollbar-thumb
 {
-	background: var(--orange-25);
+	background: var(--accent-main-purple);
 	border-radius: 100vh;
 }
 
-:is(:not(body)):hover::-webkit-scrollbar-thumb:hover
+:is(:not(body))::-webkit-scrollbar-thumb:hover
 {
-	background: var(--orange-50);
+	background: color-mix(in lab, var(--accent-main-purple), transparent 50%);
 	border-radius: 100vh;
 }
 
-body:hover::-webkit-scrollbar-thumb
+body::-webkit-scrollbar-thumb
 {
-	background: var(--orange-25);
+	background: var(--accent-main-purple);
 	border-radius: 100vh;
 }
 
-body:hover::-webkit-scrollbar-thumb:hover
+body::-webkit-scrollbar-thumb:hover
 {
-	background: var(--orange-50);
+	background: color-mix(in lab, var(--accent-main-purple), transparent 50%);
 	border-radius: 100vh;
 }
 
+::selection
+{
+	background-color: color-mix(in lab, var(--accent-main-purple), transparent 60%);
+}

@@ -19,6 +19,7 @@ export default function MainContent() {
 		backgroundClip: "text",
 		color: "transparent",
 		zIndex: 1,
+		userSelect: "none",
 	};
 
 	return (
