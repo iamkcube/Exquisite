@@ -12,6 +12,11 @@ const Circle = styled("div")({
 	pointerEvents: "none",
 	boxSizing: "border-box",
 	zIndex: 1000,
+	opacity: 0,
+	transition:"opacity 500ms ease",
+	"body:hover &": {
+		opacity: 1,
+	},
 });
 
 export default function CircleComponent() {
@@ -66,5 +71,12 @@ export default function CircleComponent() {
 		tick();
 	}, []);
 
-	return !isTouchDevice ? <Circle ref={circleRef} /> : <></>;
+	return !isTouchDevice ? (
+		<Circle
+			id="AnimatedCircle"
+			ref={circleRef}
+		/>
+	) : (
+		<></>
+	);
 }
